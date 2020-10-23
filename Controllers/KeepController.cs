@@ -33,6 +33,21 @@ namespace Keepr.Controllers
         return BadRequest(error.Message);
       }
     }
+    [HttpGet("{id}")]
+    public async Task<ActionResult<IEnumerable<Keep>>> GetById(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_serv.GetById(userInfo?.Email, id));
+      }
+      catch (Exception error)
+      {
+
+        return BadRequest(error.Message);
+      }
+    }
+
     [HttpPost]
     public async Task<ActionResult<Keep>> Post([FromBody] Keep newKeep)
     {

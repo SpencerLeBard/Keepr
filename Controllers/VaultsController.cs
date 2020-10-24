@@ -12,29 +12,16 @@ namespace Keepr.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class KeepsController : ControllerBase
+  public class VaultsController : ControllerBase
   {
-    private readonly KeepsService _serv;
-    public KeepsController(KeepsService serv)
+    private readonly VaultsService _serv;
+    public VaultsController(VaultsService serv)
     {
       _serv = serv;
     }
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Keep>>> Get()
-    {
-      try
-      {
-        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        return Ok(_serv.GetAll(userInfo?.Id));
-      }
-      catch (Exception error)
-      {
-
-        return BadRequest(error.Message);
-      }
-    }
     [HttpGet("{id}")]
-    public async Task<ActionResult<IEnumerable<Keep>>> GetById(int id)
+    public async Task<ActionResult<IEnumerable<Vault>>>
+    GetById(int id)
     {
       try
       {
@@ -47,15 +34,14 @@ namespace Keepr.Controllers
         return BadRequest(error.Message);
       }
     }
-
     [HttpPost]
-    public async Task<ActionResult<Keep>> Post([FromBody] Keep newKeep)
+    public async Task<ActionResult<Vault>> Post([FromBody] Vault newVault)
     {
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        newKeep.CreatorId = userInfo.Id;
-        Keep created = _serv.Create(newKeep);
+        newVault.CreatorId = userInfo.Id;
+        Vault created = _serv.Create(newVault);
         created.Creator = userInfo;
         return Ok(created);
       }

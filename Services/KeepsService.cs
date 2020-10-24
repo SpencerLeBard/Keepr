@@ -40,6 +40,9 @@ namespace Keepr.Services
       //NOTE WHY KEEP THROWING ACCESS DENIED
       return original;
     }
-
+    internal IEnumerable<Keep> GetKeepsByVaultId(int id)
+    {
+      return _repo.GetKeepsByVaultId(id);
+    }
   }
 }

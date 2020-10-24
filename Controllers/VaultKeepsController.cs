@@ -19,6 +19,20 @@ namespace Keepr.Controllers
     {
       _serv = serv;
     }
+    [HttpPost]
+    public ActionResult<string> Create([FromBody] VaultKeep newVK)
+    {
+      try
+      {
+        _serv.Create(newVK);
+        return Ok("nice");
+      }
+      catch (System.Exception e)
+      {
 
+        return BadRequest(e.Message);
+      }
+    }
+    //NOTE GET BY VAULT ID (?)
   }
 }

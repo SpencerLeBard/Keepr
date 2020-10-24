@@ -48,6 +48,8 @@ namespace Keepr.Controllers
       }
     }
 
+    //NOTE GET KEEPS BY VAULT ID (ONLY KNOW THIS BY CHECKING VAULTKEEPS)
+
     [HttpPost]
     public async Task<ActionResult<Keep>> Post([FromBody] Keep newKeep)
     {

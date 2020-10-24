@@ -8,10 +8,15 @@ namespace Keepr.Services
 {
   public class VaultKeepsService
   {
-    private readonly VaultsRepository _repo;
+    private readonly VaultKeepsRepository _repo;
     public VaultKeepsService(VaultKeepsRepository repo)
     {
       _repo = repo;
     }
+    internal void Create(VaultKeep newVK)
+    {
+      _repo.Create(newVK);
+    }
+
   }
 }

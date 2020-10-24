@@ -38,5 +38,17 @@ namespace Keepr.Repositories
       ";
       return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, new { id }, splitOn: "id").FirstOrDefault();
     }
+    internal IEnumerable<Vault> GetVaultsByUserId(string creatorId)
+    {
+      string sql = @"
+    SELECT
+    vault.*,
+    profile.* 
+    FROM vaults vault 
+    JOIN profiles profile on vault.creatorId = profile.Id
+    WHERE vault.creatorId = creatorId
+      ";
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, splitOn: "id");
+    }
   }
 }

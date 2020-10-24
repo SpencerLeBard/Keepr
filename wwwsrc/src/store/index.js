@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     profile: {},
     keeps: [],
+    profileKeeps:[],
   },
   mutations: {
     setProfile(state, profile) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     setKeeps(state, keeps){
       state.keeps = keeps
+    },
+    setProfileKeeps(state , keeps){
+      state.profileKeeps = keeps
     }
   },
   actions: {
@@ -34,6 +38,16 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    } 
+    } ,
+    async getProfileKeeps({commit , dispatch} , profileId){
+      //NOTE i feel like its userID
+      try {
+        let res = await api.get("profiles/" + profileId + "/blogs")
+        commit("setProfileKeeps" , res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
   },
 });

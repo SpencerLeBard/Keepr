@@ -9,6 +9,8 @@ export default new Vuex.Store({
     profile: {},
     keeps: [],
     profileKeeps:[],
+    searchedProfile: [],
+    activeKeep: {}
   },
   mutations: {
     setProfile(state, profile) {
@@ -19,7 +21,13 @@ export default new Vuex.Store({
     },
     setProfileKeeps(state , keeps){
       state.profileKeeps = keeps
-    }
+    },
+    setSearchedProfile(state , profile){
+      state.searchedProfile = profile
+    },
+    setActiveKeep(state , keep){
+      state.activeKeep = keep
+    },
   },
   actions: {
     async getProfile({ commit }) {
@@ -33,7 +41,6 @@ export default new Vuex.Store({
     async getKeeps({commit , dispatch}){
       try {
         let res = await api.get("keeps")
-        console.log(res);
         commit("setKeeps" , res.data)
       } catch (error) {
         console.error(error)
@@ -48,6 +55,26 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
+    async getSearchedProfile({commit , dispatch } , profileId){
+      try {
+        let res = await api.get("profiles/" + profileId)
+        commit("setSearchedProfile", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    setActiveKeep({ commit }, keepData) {
+      commit("setActiveKeep", keepData)
+    },
+
+    async getActiveKeep({commit} , keepId){
+      try {
+        let res = await api.get('keeps/' + keepId)
+        commit('setActiveKeep', res.data)
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
   },
 });

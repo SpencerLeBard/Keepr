@@ -26,7 +26,7 @@ export default {
   },
   methods: {},
   componenets:
-      {keepsComponent}
+      {keepsComponent},
 }
 </script>
 

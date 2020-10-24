@@ -21,7 +21,7 @@
 -- )
 
 /*NOTE HARDCODE A KEEP */
--- INSERT INTO keeps ( name , description, img , creatorId) VALUES ("Test2", "extra testy" , "http://www.img2.com" , "d1346e0c-3732-45fc-ad6b-237fa1a0b73d");
+-- INSERT INTO keeps ( name , description, img , creatorId) VALUES ("kellys", "extra testy" , "http://www.img2.com" , "d33aace6-b5e0-47c8-a2d9-4c93207627e8");
 
 -- CREATE TABLE vaults
 -- (

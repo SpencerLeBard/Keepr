@@ -26,17 +26,32 @@ namespace Keepr.Repositories
         SELECT LAST_INSERT_ID;";
       return _db.ExecuteScalar<int>(sql, newKeep);
     }
+
     internal IEnumerable<Keep> GetAll()
     {
       string sql = @"
-      SELECT
+      SELECT 
       keep.*,
-      profile.*
+      prof.*
       FROM keeps keep
-      JOIN profiles profile on keep.creatorId = profile.Id
-      ";
-      return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, splitOn: "id");
+      JOIN profiles prof ON keep.creatorId = prof.id";
+      return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+      {
+        keep.Creator = profile;
+        return keep;
+      }, splitOn: "id");
     }
+    // NOTE FIRST TRY internal IEnumerable<Keep> GetAll()
+    // {
+    //   string sql = @"
+    //   SELECT
+    //   keep.*,
+    //   profile.*
+    //   FROM keeps keep
+    //   JOIN profiles profile on keep.creatorId = profile.Id
+    //   ";
+    //   return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, splitOn: "id");
+    // }
     internal Keep GetById(int id)
     {
       string sql =

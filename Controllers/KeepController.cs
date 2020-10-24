@@ -20,19 +20,34 @@ namespace Keepr.Controllers
       _serv = serv;
     }
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Keep>>> Get()
+
+    [HttpGet]
+    public ActionResult<Keep> Get()
     {
       try
       {
-        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        return Ok(_serv.GetAll(userInfo?.Id));
+        return Ok(_serv.GetAll());
       }
-      catch (Exception error)
+      catch (Exception e)
       {
-
-        return BadRequest(error.Message);
+        return BadRequest(e.Message);
       }
     }
+    //NOTE FIRST TRY 
+    // public async Task<ActionResult<IEnumerable<Keep>>> GetAll()
+    // {
+    //   try
+    //   {
+    //     // Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+    //     return Ok(_serv.GetAll(userInfo?.Id));
+    //     //NOTE had "userInfo?.Id" in getalls 
+    //   }
+    //   catch (Exception error)
+    //   {
+
+    //     return BadRequest(error.Message);
+    //   }
+    // }
     [HttpGet("{id}")]
     public async Task<ActionResult<IEnumerable<Keep>>> GetById(int id)
     {

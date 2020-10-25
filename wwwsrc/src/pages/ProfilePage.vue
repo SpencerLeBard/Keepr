@@ -2,18 +2,18 @@
   <div class="profile container-fluid">
     <h1> Welcome to {{profile.name}}'s Profile!</h1>
     <div class="row">
-      <!-- 
-      NOTE THERE WILL BE KEEPS AND THEN VAULTS COMPS
       <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/> 
-      <vaults-component v-for="vault in vaults" :key="vault.id" :vaultProp="vault"/> -->
+      <vaults-component v-for="vault in vaults" :key="vault.id" :vaultProp="vault"/>
     </div>
   </div>
 </template>
 
 <script>
 import keepsComponent from "../components/keepsComponent";
+import vaultsComponent from "../components/vaultsComponent"
 export default {
   name: "Profile",
+  props: ["keepProp" , "vaultProp"],
   mounted(){
     //  this.$store.dispatch("getProfileBlogs", this.$route.params.profileId);
      this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);

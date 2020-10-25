@@ -50,5 +50,11 @@ namespace Keepr.Repositories
       ";
       return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, splitOn: "id");
     }
+
+    internal void Remove(int id)
+    {
+      string sql = "DELETE FROM vaults WHERE id = @id";
+      _db.Execute(sql, new { id });
+    }
   }
 }

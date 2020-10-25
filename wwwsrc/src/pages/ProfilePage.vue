@@ -2,22 +2,23 @@
   <div class="profile container-fluid">
     <h1> Welcome to {{profile.name}}'s Profile!</h1>
     <div class="row">
-      <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/> 
-      <vaults-component v-for="vault in vaults" :key="vault.id" :vaultProp="vault"/>
+      <!-- <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/>  -->
+     Vaults: <vaults-component v-for="vault in vaults" :key="vault.id" :vaultProp="vault"/>
     </div>
   </div>
 </template>
 
 <script>
 import keepsComponent from "../components/keepsComponent";
-import vaultsComponent from "../components/vaultsComponent"
+import vaultsComponent from "../components/vaultsComponent";
 export default {
-  name: "Profile",
+  name: "profile",
   props: ["keepProp" , "vaultProp"],
   mounted(){
+    this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
+    this.$store.dispatch("getVaults" , vaultData)
     //  this.$store.dispatch("getProfileBlogs", this.$route.params.profileId);
-     this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
-    //NOTE pretty sure its "userId" or "creatorId"
+
   },
   computed: {
     keeps(){
@@ -25,6 +26,9 @@ export default {
     },
     profile(){
       return this.$store.state.profile;
+    },
+    vault(){
+      return this.$store.state.vaults
     }
   },
   methods: {
@@ -33,7 +37,7 @@ export default {
   },
   },
   componenets:
-      {keepsComponent},
+      {keepsComponent , vaultsComponent},
 }
 </script>
 

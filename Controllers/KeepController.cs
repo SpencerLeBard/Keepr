@@ -6,6 +6,7 @@ using CodeWorks.Auth0Provider;
 using Keepr.Models;
 using Keepr.Repositories;
 using Keepr.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
@@ -73,6 +74,7 @@ namespace Keepr.Controllers
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         newKeep.CreatorId = userInfo.Id;
         Keep created = _serv.Create(newKeep);
+        //NOTE THIS IS WHERE THE PROBLEM IS
         created.Creator = userInfo;
         return Ok(created);
       }
@@ -80,6 +82,21 @@ namespace Keepr.Controllers
       {
 
         return BadRequest(error.Message);
+      }
+    }
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<string>> Delete(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_serv.Delete(id, userInfo.Email));
+      }
+      catch (System.Exception error)
+      {
+        return BadRequest(error.Message);
+
       }
     }
   }

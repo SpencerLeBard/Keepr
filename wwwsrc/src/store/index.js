@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     profile: {},
     keeps: [],
+    vaults: [],
     profileKeeps:[],
     searchedProfile: [],
     activeKeep: {}
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     setKeeps(state, keeps){
       state.keeps = keeps
+    },
+    setVaults(state, vaults){
+      state.vaults = vaults
     },
     setProfileKeeps(state , keeps){
       state.profileKeeps = keeps
@@ -49,8 +53,15 @@ export default new Vuex.Store({
         console.error(error)
       }
     } ,
+    async getVaults({commit , dispatch} , vaultData){
+      try {
+        let res = await api.get("vaults/" + vaultData)
+        commit("setVaults" , res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    } ,
     async getProfileKeeps({commit , dispatch} , profileId){
-      //NOTE i feel like its userID
       try {
         let res = await api.get("profiles/" + profileId + "/keeps")
         commit("setProfileKeeps" , res.data)
@@ -89,7 +100,8 @@ export default new Vuex.Store({
     async createKeep({ commit, dispatch }, keepData) {
       try {
         let res = await api.post("keeps", keepData)
-        commit("addKeep" , res.data)
+        // console.log(res);
+        commit("addKeep" )
         dispatch("getKeeps")
       } catch (error) {
         console.error(error)

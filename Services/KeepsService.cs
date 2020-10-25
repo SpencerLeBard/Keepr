@@ -35,20 +35,29 @@ namespace Keepr.Services
     internal Keep GetById(string creatorId, int id)
     {
       Keep original = _repo.GetById(id);
-      // if (original == null)
-      // {
-      //   throw new Exception("Invalid ID");
-      // }
-      // if (original.CreatorId != creatorId)
-      // {
-      //   throw new Exception("Access Denied, why u lie about id");
-      // }
+      if (original == null)
+      {
+        throw new Exception("Invalid ID");
+      }
+      if (original.CreatorId != creatorId)
+      {
+        throw new Exception("Access Denied, why u lie about id");
+      }
       //NOTE WHY KEEP THROWING ACCESS DENIED
       return original;
     }
     internal IEnumerable<Keep> GetKeepsByVaultId(int id)
     {
       return _repo.GetKeepsByVaultId(id);
+    }
+    internal object Delete(int id, string creatorId)
+    {
+      Keep original = _repo.GetById(id);
+      if (original == null) { throw new Exception("Invalid Id"); }
+      if (original.CreatorId != creatorId) { throw new Exception("Access Denied... This is not yours"); }
+      _repo.Remove(id);
+      return "succesfully delorted";
+
     }
   }
 }

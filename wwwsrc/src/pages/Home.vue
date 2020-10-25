@@ -5,9 +5,12 @@
       <form @submit.prevent="createKeep">
         <div class="form-group card">
       <button class="btn btn-success" type="submit">Create Keep</button>
-      <input class="form-control" placeholder="Keep Title ... " type="text" v-model="keepData.name">
-      <input class="form-control" placeholder="Keep desc ... " type="text" v-model="keepData.description">
-      <input class="form-control" placeholder="Keep img ... " type="text" v-model="keepData.img">
+      <input class="form-control" placeholder="Keep Title ... " type="text" v-model="newKeep.name">
+      <input class="form-control" placeholder="Keep desc ... " type="text" v-model="newKeep.description">
+      <input class="form-control" placeholder="Keep img ... " type="text" v-model="newKeep.img">
+       <!-- <input class="form-control" placeholder="profile Id ... " type="text" v-model="keepData.creatorId">
+       <input class="form-control" placeholder=" Id ... " type="text" v-model="keepData.id"> -->
+      <!-- NOTE d1346e0c-3732-45fc-ad6b-237fa1a0b73d is test id -->
         </div>
       </form>
 
@@ -27,7 +30,7 @@ export default {
   mounted(){
     this.$store.dispatch("getKeeps"),
     this.$store.dispatch("getActiveKeep" , this.$route.params.keepId)
-    this.$store.dispatch("getProfile" , this.profile)
+    this.$store.dispatch("getProfile" , this.$route.params.profile)
     // console.log(this.profile);
 
   },
@@ -35,7 +38,10 @@ export default {
     return {
       keepData: {
         // creatorId : keepProp.creatorId
-      }
+      },
+      newKeep:{
+        // creatorId: this.$route.params.profile
+      },
     }
   },
   computed: {
@@ -45,15 +51,18 @@ export default {
      activeKeep() {
       return this.$store.state.activeKeep
     },
+    profile(){
+      return this.$store.state.profile
+    }
   },
   methods: {
   setActive() {
           this.$store.dispatch("setActiveKeep", this.keepData)
   },
   createKeep(){
-    this.$store.dispatch("createKeep" , this.keepData)
+    this.$store.dispatch("createKeep" , this.newKeep)
     // this.keepData = { creatorId: "profile" };
-    // console.log(this.keepData);
+    console.log(this.newKeep);
   }
 },
   components: {keepsComponent},

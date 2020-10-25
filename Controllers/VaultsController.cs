@@ -6,6 +6,7 @@ using CodeWorks.Auth0Provider;
 using Keepr.Models;
 using Keepr.Repositories;
 using Keepr.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
@@ -36,6 +37,7 @@ namespace Keepr.Controllers
       }
     }
     [HttpGet("user/{creatorId}")]
+    //NOTE PROBABLY GET RIF OF USER
     public async Task<ActionResult<IEnumerable<VaultsController>>> GetVaultsByUserId(string creatorId)
     {
       try
@@ -77,6 +79,21 @@ namespace Keepr.Controllers
       {
 
         return BadRequest(error.Message);
+      }
+    }
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<string>> Delete(int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_serv.Delete(id, userInfo.Id));
+      }
+      catch (System.Exception error)
+      {
+        return BadRequest(error.Message);
+
       }
     }
   }

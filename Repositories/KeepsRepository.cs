@@ -19,8 +19,8 @@ namespace Keepr.Repositories
     internal int Create(Keep newKeep)
     {
       string sql = @"
-        INSERT INTO keeps 
-        (name , description, img , views , shares , keeps , creatorId)
+        INSERT INTO Keeps 
+        (name , description, img , shares , views , keeps , creatorId)
         VALUES
         (@Name , @Description , @Img , @Views , @Shares , @Keeps , @CreatorId);
         SELECT LAST_INSERT_ID;";
@@ -74,6 +74,11 @@ namespace Keepr.Repositories
       WHERE vaultId = @id
       ";
       return _db.Query<Keep>(sql, new { id });
+    }
+    internal void Remove(int id)
+    {
+      string sql = "DELETE FROM keeps WHERE id = @id";
+      _db.Execute(sql, new { id });
     }
   }
 }

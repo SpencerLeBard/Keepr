@@ -4,7 +4,8 @@
     <div class="row">
       <!-- 
       NOTE THERE WILL BE KEEPS AND THEN VAULTS COMPS
-      <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/> -->
+      <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/> 
+      <vaults-component v-for="vault in vaults" :key="vault.id" :vaultProp="vault"/> -->
     </div>
   </div>
 </template>
@@ -12,9 +13,9 @@
 <script>
 import keepsComponent from "../components/keepsComponent";
 export default {
-  name: "profile",
+  name: "Profile",
   mounted(){
-     this.$store.dispatch("getProfileBlogs", this.$route.params.profileId);
+    //  this.$store.dispatch("getProfileBlogs", this.$route.params.profileId);
      this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
     //NOTE pretty sure its "userId" or "creatorId"
   },
@@ -23,10 +24,14 @@ export default {
       return this.$store.state.profileKeeps;
     },
     profile(){
-      return this.$store.state.searchedProfile;
+      return this.$store.state.profile;
     }
   },
-  methods: {},
+  methods: {
+       viewProfile(){
+      this.$router.push({name: "Profile", params: { profileId:this.keepProp.creator.id}})
+  },
+  },
   componenets:
       {keepsComponent},
 }

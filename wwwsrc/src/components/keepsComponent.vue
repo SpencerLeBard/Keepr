@@ -63,7 +63,7 @@ export default {
     count(){
     //   this.activeKeep.views += 1
       // console.log(this.activeKeep.views);
-      console.log(this.activeKeep.name);
+      // console.log(this.activeKeep.name);
     //   this.$store.dispatch("count" , this.activeKeep.Views)
     }
 },

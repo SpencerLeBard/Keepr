@@ -17,6 +17,16 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
+      <li
+                class="nav-item"
+                v-if="$auth.isAuthenticated"
+                :class="{ active: $route.name == 'Profile' }"
+              >
+                <router-link
+                  class="nav-link text-dark"
+                  :to="{ name: 'Profile' }"
+                >Profile</router-link>
+              </li>
       <span class="navbar-text">
         <!-- Consider changing this to a profile picture -->
         <button
@@ -35,6 +45,7 @@
 <script>
 import { getUserData } from "@bcwdev/auth0-vue";
 import { setBearer, resetBearer } from "../services/AxiosService";
+import {ProfilePage} from "../pages/ProfilePage"
 export default {
   name: "Navbar",
   methods: {

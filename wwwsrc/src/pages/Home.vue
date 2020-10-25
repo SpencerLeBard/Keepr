@@ -9,6 +9,7 @@
 <script>
 import keepDetailsComponent from "../components/keepDetailsComponent"
 import keepsComponent from "../components/keepsComponent"
+import ProfilePage from "../pages/ProfilePage"
 export default {
   name: "home",
   props:["keepProp" , "index"],

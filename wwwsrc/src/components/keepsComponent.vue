@@ -3,7 +3,9 @@
   <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>
   <h2>{{keepProp.creator.name}}</h2>
-  <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic">
+  <!-- <h2>{{keepProp.creator.picture}}</h2> -->
+  <!-- <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -->
+  <img :src="keepProp.creator.picture" width="100" height="100" alt="pic" @click="viewProfile">
   <div class="modal fade"  id="keepModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

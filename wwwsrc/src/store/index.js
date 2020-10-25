@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { api } from "../services/AxiosService.js";
+import ns from "../services/NotificationServices";
 
 Vue.use(Vuex);
 
@@ -55,6 +56,7 @@ export default new Vuex.Store({
     } ,
     async getVaults({commit , dispatch} , vaultData){
       try {
+        //FIXME I only want the vaults in at profile
         let res = await api.get("vaults/" + vaultData)
         commit("setVaults" , res.data)
       } catch (error) {

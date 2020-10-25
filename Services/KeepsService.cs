@@ -59,5 +59,19 @@ namespace Keepr.Services
       return "succesfully delorted";
 
     }
+
+    internal Keep KeepCounter(Keep keepData, string creatorId)
+    {
+      Keep original = _repo.GetById(keepData.Id);
+      if (original == null) { throw new Exception("Invalid Id"); }
+      if (original.CreatorId != creatorId) { throw new Exception("Access Denied... This is not yours"); }
+      // keepData.Name = keepData.Name == null ? original.Name : keepData.Name;
+      // keepData.Description = keepData.Description == null ? original.Description : keepData.Description;
+      // keepData.Img = keepData.Img == null ? original.Img : keepData.Img;
+      //NOTE LOGIC FOR COUNTER HERE
+
+      return _repo.KeepCounter(keepData);
+    }
+
   }
 }

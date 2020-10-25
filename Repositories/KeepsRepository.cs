@@ -80,5 +80,21 @@ namespace Keepr.Repositories
       string sql = "DELETE FROM keeps WHERE id = @id";
       _db.Execute(sql, new { id });
     }
+    internal Keep KeepCounter(Keep keepData)
+    {
+      string sql = @"
+            UPDATE keeps
+            SET
+            name = @Name,
+            description = @Description,
+            img = @Img,
+            published = @Published
+
+            // NOTE LOGIC FOR KEEP COUNT
+
+            WHERE id = @Id;";
+      _db.Execute(sql, keepData);
+      return keepData;
+    }
   }
 }

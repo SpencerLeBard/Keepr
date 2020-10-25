@@ -1,5 +1,5 @@
 <template>
-<div class="keep-cards card col-3 m-2" @click ="setActiveKeep"> 
+<div class="keep-cards card col-3 m-2" @click ="setActiveKeep() + count() "> 
   <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>
   <h2>{{keepProp.creator.name}}</h2>
@@ -38,30 +38,33 @@ export default {
     return{
     }
   },
-  mounted(){
-    this.$store.dispatch("getActiveKeep" , this.$route.params.keepId)
-  },
+  // mounted(){
+  //   this.$store.dispatch("getActiveKeep" , this.$route.params.keepId)
+  // },
   computed:{
     profile(){
       return this.$store.state.profile
     },
-    // modalId(){
-    //   return "modal" + this.keepData.id
-    //},
     activeKeep() {
-      return this.$store.state.activeKeep
+      return this.$store.state.activeKeep;
     },
     keep() {
       return this.$store.state.keeps
     },
   },
   methods:{
+
     viewProfile(){
       this.$router.push({name: "Profile", params: { profileId:this.keepProp.creator.id}})
   },
     setActiveKeep(){
       this.$store.dispatch("setActiveKeep" , this.keepProp)
-      // console.log(this.keepProp.name);
+    },
+    count(){
+    //   this.activeKeep.views += 1
+      // console.log(this.activeKeep.views);
+      console.log(this.activeKeep.name);
+    //   this.$store.dispatch("count" , this.activeKeep.Views)
     }
 },
 // components:
@@ -74,11 +77,6 @@ export default {
   height: 40vh;
   width: 25vw;
 }
-.truncate {
-  width: 25vw;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
 
 </style>

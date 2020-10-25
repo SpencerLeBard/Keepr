@@ -2,7 +2,9 @@
   <div class="profile container-fluid">
     <h1> Welcome to {{profile.name}}'s Profile!</h1>
     <div class="row">
-    <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/>
+      <!-- 
+      NOTE THERE WILL BE KEEPS AND THEN VAULTS COMPS
+      <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/> -->
     </div>
   </div>
 </template>

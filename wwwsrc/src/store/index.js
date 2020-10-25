@@ -75,6 +75,14 @@ export default new Vuex.Store({
         console.error(error);
       }
     }
+    // count({commit} , keepData){
+    //   try {
+    //     let res = await api.put('keeps/' + keepId)
+    //     commit('setActiveKeep', res.data)
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
 
   },
 });

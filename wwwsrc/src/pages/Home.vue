@@ -14,7 +14,7 @@
         </div>
       </form>
     </div>
-<keeps-component class="btn" type="button" data-toggle="modal" data-target="#keepModal" v-for="keep in keeps" :key="keep.id" :keepProp="keep"/>
+<keeps-component class="btn" type="button" data-toggle="modal" data-target="#keepModal" v-for="keep in keeps" :key="keep.id" :keepProp="keep" />
     </div>
   </div>
 </template>
@@ -55,9 +55,9 @@ export default {
     }
   },
   methods: {
-  setActive() {
-          this.$store.dispatch("setActiveKeep", this.keepData)
-  },
+  // setActiveKeep() {
+  //     this.$store.dispatch("setActiveKeep", this.keepData)
+  // },
   createKeep(){
     this.$store.dispatch("createKeep" , this.newKeep)
     console.log(this.newKeep);

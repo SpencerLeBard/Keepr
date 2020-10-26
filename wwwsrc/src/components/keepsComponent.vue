@@ -1,5 +1,5 @@
 <template>
-<div class="keep-cards card col-3 m-2" @click ="setActiveKeep()"> 
+<div class="keep-cards card col-3 m-2" @click="setActiveKeep()"> 
    <i class="fa fa-times text-danger" v-if="profile.id == keepProp.creatorId" @click="deleteKeep()" aria-hidden="true"></i>
   <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>
@@ -66,6 +66,7 @@ export default {
     },
     deleteKeep(){
       this.$store.dispatch("deleteKeep",this.keepProp.id)
+      debugger
 }
 }
 }

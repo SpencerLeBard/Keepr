@@ -1,7 +1,7 @@
 <template>
   <div class="profile container-fluid">
     <div class="row">
-      <div class="col-6">
+      <div class="col">
 
     <h1> Welcome to {{searchedProfile.name}}'s Profile!</h1>
     <img :src="searchedProfile.picture" width="100" height="100" alt="pic">

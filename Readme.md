@@ -21,7 +21,7 @@
 ### Wednesday
 
 - profile page adheres to mock:
-- public/private vaults - request fails if private
+- private vaults - request fails if private **cannot see private vaults**
 - Keeps created by that user
 - Total `keep`s count
 - Anytime a `keep` is `kept in a vault` the keep count is incremented

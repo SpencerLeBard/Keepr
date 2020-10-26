@@ -21,8 +21,6 @@ namespace Keepr.Controllers
       _serv = serv;
     }
     [HttpGet]
-
-    [HttpGet]
     public ActionResult<Keep> Get()
     {
       try

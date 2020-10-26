@@ -32,17 +32,16 @@ namespace Keepr.Services
       //NOTE WHY KEEP THROWING ACCESS DENIED
       return original;
     }
-    internal IEnumerable<Vault> GetVaultsByUserId(string userId)
+    internal IEnumerable<Vault> GetVaultsByCreatorId(string queryProfile, string creatorId)
     {
-      return _repo.GetVaultsByUserId(userId).ToList().FindAll(v => v.CreatorId == userId);
-      //NOTE ADD || PRIVATE == FALSE
+      return _repo.GetVaultsByCreatorId(queryProfile).ToList().FindAll(v => v.CreatorId == creatorId || v.IsPrivate == false);
     }
 
     internal object Delete(int id, string creatorId)
     {
       Vault original = _repo.GetById(id);
       if (original == null) { throw new Exception("Invalid Id"); }
-      if (original.CreatorId != creatorId) { throw new Exception("Access Denied... This is not yours"); }
+      // if (original.CreatorId != creatorId) { throw new Exception("Access Denied... This is not yours"); }
       _repo.Remove(id);
       return "succesfully delorted";
 

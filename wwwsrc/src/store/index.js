@@ -11,7 +11,7 @@ export default new Vuex.Store({
     keeps: [],
     vaults: [],
     profileKeeps:[],
-    searchedProfile: [],
+    searchedProfile: {},
     activeKeep: {}
   },
   mutations: {
@@ -56,8 +56,7 @@ export default new Vuex.Store({
     } ,
     async getVaults({commit , dispatch} , vaultData){
       try {
-        //FIXME I only want the vaults in at profile
-        let res = await api.get("vaults/" + vaultData)
+        let res = await api.get("profiles/" + vaultData + "/vaults")
         commit("setVaults" , res.data)
       } catch (error) {
         console.error(error)
@@ -107,6 +106,15 @@ export default new Vuex.Store({
         dispatch("getKeeps")
       } catch (error) {
         console.error(error)
+      }
+    },
+    async deleteKeep({ commit, dispatch }, keepId) {
+      try {
+        await api.delete("keeps/" + keepId)
+        dispatch("getKeeps")
+      } catch (error) {
+        console.error(error)
+
       }
     },
   },

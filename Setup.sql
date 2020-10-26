@@ -1,5 +1,7 @@
--- DROP TABLE keeps
--- SET FOREIGN_KEY_CHECKS=0;
+-- DROP TABLE vaultkeeps;
+-- DROP TABLE keeps;
+
+
 
 -- FIXME FILL THIS OUT, DROP TABLE, CREATE NEW TABLE WITH ADDITIONS
 
@@ -10,14 +12,21 @@
 --   description VARCHAR(255) NOT NULL,
 --   img VARCHAR(255),
 --   creatorId VARCHAR(255) NOT NULL,
---   shares INT
---   views INT
---   keeps INT
+--   shares INT,
+--   views INT,
+--   keeps INT,
 --   PRIMARY KEY (id),
 --   FOREIGN KEY (creatorId)
 --     REFERENCES profiles(id)
 --     ON DELETE CASCADE
 -- )
+
+/*NOTE Create KEEP */ 
+-- INSERT INTO keeps ( name , description, img , creatorId , shares , views , keeps) VALUES ("spencers1", "description test" , "http://www.img2.com" , "d1346e0c-3732-45fc-ad6b-237fa1a0b73d" , 0 , 0 , 0 );
+-- INSERT INTO keeps ( name , description, img , creatorId , shares , views , keeps) VALUES ("spencers2", "extra testy" , "http://www.img2.com" , "d1346e0c-3732-45fc-ad6b-237fa1a0b73d" , 0 , 0 , 0 );
+-- INSERT INTO keeps ( name , description, img , creatorId , shares , views , keeps) VALUES ("kellys", "testy cal" , "http://www.img2.com" , "d33aace6-b5e0-47c8-a2d9-4c93207627e8" , 0 , 0 , 0);
+/*FIXME do I include views, shares, ect as 0? or model? */ 
+
 
 -- CREATE TABLE profiles
 -- (
@@ -29,9 +38,6 @@
 -- );
 
 
-/*NOTE HARDCODE A KEEP */
-
--- INSERT INTO keeps ( name , description, img , creatorId) VALUES ("spencers", "extra testy" , "http://www.img2.com" , "d1346e0c-3732-45fc-ad6b-237fa1a0b73d");
 
 -- CREATE TABLE vaults
 -- (

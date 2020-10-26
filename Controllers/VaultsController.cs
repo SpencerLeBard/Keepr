@@ -22,7 +22,7 @@ namespace Keepr.Controllers
       _serv = serv;
       _keepsService = keepsService;
     }
-    [HttpGet("{id}")]
+    [HttpGet("{id}")] //api/vaults/vaultId
     public async Task<ActionResult<IEnumerable<Vault>>> GetById(int id)
     {
       try
@@ -36,20 +36,20 @@ namespace Keepr.Controllers
         return BadRequest(error.Message);
       }
     }
-    [HttpGet("user/{creatorId}")]
-    //NOTE PROBABLY GET RIF OF USER
-    public async Task<ActionResult<IEnumerable<VaultsController>>> GetVaultsByUserId(string creatorId)
-    {
-      try
-      {
-        return Ok(_serv.GetVaultsByUserId(creatorId));
-      }
-      catch (Exception error)
-      {
+    // [HttpGet("{creatorId}")] //api/vaults/creatorID
+    // public async Task<ActionResult<IEnumerable<VaultsController>>> GetVaultsByCreatorId(string creatorId)
+    // {
+    //   try
+    //   {
+    //     Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+    //     return Ok(_serv.GetVaultsByCreatorId(creatorId));
+    //   }
+    //   catch (Exception error)
+    //   {
 
-        return BadRequest(error.Message);
-      }
-    }
+    //     return BadRequest(error.Message);
+    //   }
+    // }
     [HttpGet("{id}/keeps")] //api/vaults/:id/keeps
     public ActionResult<IEnumerable<Keep>> GetKeepsByVaultId(int id)
     {
@@ -96,5 +96,6 @@ namespace Keepr.Controllers
 
       }
     }
+
   }
 }

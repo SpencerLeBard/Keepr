@@ -38,7 +38,7 @@ namespace Keepr.Repositories
       ";
       return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, new { id }, splitOn: "id").FirstOrDefault();
     }
-    internal IEnumerable<Vault> GetVaultsByUserId(string creatorId)
+    internal IEnumerable<Vault> GetVaultsByCreatorId(string queryProfile)
     {
       string sql = @"
     SELECT
@@ -46,9 +46,9 @@ namespace Keepr.Repositories
     profile.* 
     FROM vaults vault 
     JOIN profiles profile on vault.creatorId = profile.Id
-    WHERE vault.creatorId = creatorId
+    WHERE vault.creatorId = @queryProfile
       ";
-      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, splitOn: "id");
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, new { queryProfile }, splitOn: "id");
     }
 
     internal void Remove(int id)

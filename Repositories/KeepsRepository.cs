@@ -52,6 +52,19 @@ namespace Keepr.Repositories
     //   ";
     //   return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, splitOn: "id");
     // }
+    // internal Keep GetById(int id) NOTE THIS WORKS FOR GET BY ID
+    // {
+    //   string sql =
+    //   @"
+    //   SELECT
+    //   keep.*,
+    //   profile.*
+    //   FROM keeps keep
+    //   JOIN profiles profile on keep.creatorId = profile.Id
+    //   WHERE keep.id = @id
+    //   ";
+    //   return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { id }, splitOn: "id").FirstOrDefault();
+    // }
     internal Keep GetById(int id)
     {
       string sql =
@@ -61,7 +74,9 @@ namespace Keepr.Repositories
       profile.*
       FROM keeps keep
       JOIN profiles profile on keep.creatorId = profile.Id
-      WHERE keep.id = @id
+      UPDATE keeps
+      SET 
+      views = @Views + 1 WHERE keep.id = @id
       ";
       return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { id }, splitOn: "id").FirstOrDefault();
     }

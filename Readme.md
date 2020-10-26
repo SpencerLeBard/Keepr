@@ -7,19 +7,15 @@
 
 ### Monday:
 
-1. modify/drop keeps table and create new with views,shares etc ...
-2. logic for count in server
-3. tests - only one checkbox? have to match tests perfect?
-4. only navigates to my own profile
+2. logic for count in server or client (repo sql code?)
 
-- Create and Delete Keeps on client side
-- Vaults on Profile
+- Vaults draw to correct profile
 - View Count
-- Add `keep`to `vault`
-- Delete `keeps` from `vault`s
 
 ### Tuesday:
 
+- Add `keep`to `vault`
+- Delete `keeps` from `vault`s
 - Create and Delete Vaults on client side
 - vault page/details
 - routes for vault page

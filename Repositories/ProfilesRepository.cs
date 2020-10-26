@@ -1,6 +1,7 @@
 using System.Data;
 using Keepr.Models;
 using Dapper;
+using System.Collections.Generic;
 
 namespace Keepr.Repositories
 {
@@ -28,6 +29,18 @@ namespace Keepr.Repositories
               (@Name, @Picture, @Email, @Id)";
       _db.Execute(sql, newProfile);
       return newProfile;
+    }
+    internal IEnumerable<Vault> GetVaultsByCreatorId(string creatorId)
+    {
+      string sql = @"
+    SELECT
+    vault.*,
+    profile.* 
+    FROM vaults vault 
+    JOIN profiles profile on vault.creatorId = profile.Id
+    WHERE vault.creatorId = creatorId
+      ";
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, splitOn: "id");
     }
   }
 }

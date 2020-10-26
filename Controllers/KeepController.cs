@@ -91,7 +91,7 @@ namespace Keepr.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        return Ok(_serv.Delete(id, userInfo.Email));
+        return Ok(_serv.Delete(id, userInfo.Id));
       }
       catch (System.Exception error)
       {

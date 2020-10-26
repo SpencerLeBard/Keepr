@@ -1,11 +1,12 @@
 <template>
 <div class="keep-cards card col-3 m-2" @click ="setActiveKeep() + count() "> 
+   <i class="fa fa-times text-danger" v-if="profile.id == keepProp.creatorId" @click="deleteKeep()" aria-hidden="true"></i>
   <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>
   <h2>{{keepProp.creator.name}}</h2>
   <!-- <h2>{{keepProp.creator.picture}}</h2> -->
   <!-- <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -->
-  <img :src="keepProp.creator.picture" width="100" height="100" alt="pic" @click="viewProfile">
+  <img :src="keepProp.creator.picture" width="100" height="100" alt="pic" @click="viewProfile()">
   <div class="modal fade"  id="keepModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -58,6 +59,7 @@ export default {
 
     viewProfile(){
       this.$router.push({name: "Profile", params: { profileId:this.keepProp.creator.id}})
+      this.$store.dispatch("getSearchedProfile" , this.keepProp.creator.id)
   },
     setActiveKeep(){
       this.$store.dispatch("setActiveKeep" , this.keepProp)
@@ -67,10 +69,11 @@ export default {
       // console.log(this.activeKeep.views);
       // console.log(this.activeKeep.name);
     //   this.$store.dispatch("count" , this.activeKeep.Views)
-    }
-},
-// components:
-// {keepDetailsComponent }
+    },
+    deleteKeep(){
+      this.$store.dispatch("deleteKeep",this.keepProp.id)
+}
+}
 }
 </script>
 

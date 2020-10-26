@@ -101,7 +101,7 @@ namespace Keepr.Controllers
     }
     [HttpPut("{id}")]
     [Authorize]
-    public async Task<ActionResult<Keep>> KeepCounter(int id, [FromBody] Keep keepData)
+    public async Task<ActionResult<Keep>> KeepViewCounter(int id, [FromBody] Keep keepData)
     {
       try
       {
@@ -109,8 +109,7 @@ namespace Keepr.Controllers
         keepData.CreatorId = userInfo.Id;
         keepData.Creator = userInfo;
         keepData.Id = id;
-
-        return Ok(_serv.KeepCounter(keepData, userInfo.Id));
+        return Ok(_serv.KeepViewCounter(keepData, userInfo.Id));
       }
       catch (System.Exception error)
       {

@@ -13,7 +13,6 @@
       <!-- NOTE d1346e0c-3732-45fc-ad6b-237fa1a0b73d is test id -->
         </div>
       </form>
-
     </div>
 <keeps-component class="btn" type="button" data-toggle="modal" data-target="#keepModal" v-for="keep in keeps" :key="keep.id" :keepProp="keep"/>
     </div>
@@ -61,7 +60,6 @@ export default {
   },
   createKeep(){
     this.$store.dispatch("createKeep" , this.newKeep)
-    // this.keepData = { creatorId: "profile" };
     console.log(this.newKeep);
   }
 },

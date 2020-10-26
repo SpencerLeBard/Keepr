@@ -41,30 +41,6 @@ namespace Keepr.Repositories
         return keep;
       }, splitOn: "id");
     }
-    // NOTE FIRST TRY internal IEnumerable<Keep> GetAll()
-    // {
-    //   string sql = @"
-    //   SELECT
-    //   keep.*,
-    //   profile.*
-    //   FROM keeps keep
-    //   JOIN profiles profile on keep.creatorId = profile.Id
-    //   ";
-    //   return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, splitOn: "id");
-    // }
-    // internal Keep GetById(int id) NOTE THIS WORKS FOR GET BY ID
-    // {
-    //   string sql =
-    //   @"
-    //   SELECT
-    //   keep.*,
-    //   profile.*
-    //   FROM keeps keep
-    //   JOIN profiles profile on keep.creatorId = profile.Id
-    //   WHERE keep.id = @id
-    //   ";
-    //   return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { id }, splitOn: "id").FirstOrDefault();
-    // }
     internal Keep GetById(int id)
     {
       string sql =
@@ -74,12 +50,26 @@ namespace Keepr.Repositories
       profile.*
       FROM keeps keep
       JOIN profiles profile on keep.creatorId = profile.Id
-      UPDATE keeps
-      SET 
-      views = @Views + 1 WHERE keep.id = @id
+      WHERE keep.id = @id
       ";
       return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { id }, splitOn: "id").FirstOrDefault();
     }
+    // internal Keep GetById(int id)
+    // {
+    //   string sql =
+    //   @"
+    //   SELECT
+    //   keep.*,
+    //   profile.*
+    //   FROM keeps keep
+    //   UPDATE keeps 
+    //   SET 
+    //   keeps.views = keeps.views + 1 
+    //   JOIN profiles profile on keep.creatorId = profile.Id
+    //   WHERE keep.id = @id
+    //   ";
+    //   return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { id }, splitOn: "id").FirstOrDefault();
+    // }
     internal IEnumerable<Keep> GetKeepsByVaultId(int id)
     {
       string sql = @"
@@ -95,18 +85,12 @@ namespace Keepr.Repositories
       string sql = "DELETE FROM keeps WHERE id = @id";
       _db.Execute(sql, new { id });
     }
-    internal Keep KeepCounter(Keep keepData)
+    internal Keep KeepViewCounter(Keep keepData)
     {
       string sql = @"
             UPDATE keeps
             SET
-            name = @Name,
-            description = @Description,
-            img = @Img,
-            published = @Published
-
-            // NOTE LOGIC FOR KEEP COUNT
-
+            views = @Views + 1
             WHERE id = @Id;";
       _db.Execute(sql, keepData);
       return keepData;

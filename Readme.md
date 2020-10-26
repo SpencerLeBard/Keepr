@@ -7,16 +7,13 @@
 
 ### Monday:
 
-2. logic for count in server or client (repo sql code?)
-
-- Vaults draw to correct profile
-- View Count
+- View Count - server side in repo/setActiveId
+- ActiveKeep is not hitting server
 
 ### Tuesday:
 
 - Add `keep`to `vault`
 - Delete `keeps` from `vault`s
-- Create and Delete Vaults on client side
 - vault page/details
 - routes for vault page
 - in vault page if user is creator they can remove keep from vault

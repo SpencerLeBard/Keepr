@@ -1,15 +1,12 @@
 <template>
-<div class="container-fluid"> 
-  <div class="row">
-    <div class="vaults-cards card col-3 m-2 d-flex">
+<div class="vaults-cards card m-2">
+  <i class="fa fa-times text-danger" v-if="profile.id == vaultProp.creatorId" @click="deleteVault()" aria-hidden="true"></i>
   <div><h2>{{vaultProp.name}}</h2>
   <h2>{{vaultProp.description}}</h2> 
   <h2>{{vaultProp.creator.name}}</h2> 
   <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -
     </div> 
     </div>
-  </div>
-    </div> 
 </template>
 
 <script>
@@ -34,6 +31,11 @@ export default {
       return this.$store.state.vaults
     }
   },
+  methods: {
+     deleteVault(){
+      this.$store.dispatch("deleteVault",this.vaultProp.id)
+}
+  }
 }
 </script>
 

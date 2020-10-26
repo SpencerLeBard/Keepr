@@ -1,5 +1,5 @@
 <template>
-<div class="keep-cards card col-3 m-2" @click ="setActiveKeep() + count() "> 
+<div class="keep-cards card col-3 m-2" @click ="setActiveKeep()"> 
    <i class="fa fa-times text-danger" v-if="profile.id == keepProp.creatorId" @click="deleteKeep()" aria-hidden="true"></i>
   <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>
@@ -63,12 +63,6 @@ export default {
   },
     setActiveKeep(){
       this.$store.dispatch("setActiveKeep" , this.keepProp)
-    },
-    count(){
-    //   this.activeKeep.views += 1
-      // console.log(this.activeKeep.views);
-      // console.log(this.activeKeep.name);
-    //   this.$store.dispatch("count" , this.activeKeep.Views)
     },
     deleteKeep(){
       this.$store.dispatch("deleteKeep",this.keepProp.id)

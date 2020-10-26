@@ -60,7 +60,7 @@ namespace Keepr.Services
 
     }
 
-    internal Keep KeepCounter(Keep keepData, string creatorId)
+    internal Keep KeepViewCounter(Keep keepData, string creatorId)
     {
       Keep original = _repo.GetById(keepData.Id);
       if (original == null) { throw new Exception("Invalid Id"); }
@@ -70,7 +70,7 @@ namespace Keepr.Services
       // keepData.Img = keepData.Img == null ? original.Img : keepData.Img;
       //NOTE LOGIC FOR COUNTER HERE
 
-      return _repo.KeepCounter(keepData);
+      return _repo.KeepViewCounter(keepData);
     }
 
   }

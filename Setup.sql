@@ -59,7 +59,7 @@ CREATE TABLE vaultkeeps
   vaultId INT,
   keepId INT,
   creatorId VARCHAR(255),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
     FOREIGN KEY (creatorId)
     REFERENCES profiles(id)
     ON DELETE CASCADE

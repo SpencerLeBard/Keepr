@@ -28,12 +28,12 @@
         <p>{{activeKeep.img}}</p>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-primary" @click="createVaultKeep()" >Save to Vault</button> -->
-        <form @submit.prevent="createVaultKeep()">
+        <button type="button" class="btn btn-primary" @click="createVaultKeep()" >Save to Vault</button>
+        <!-- <form @submit.prevent="createVaultKeep()">
             <button class="btn btn-danger">Save to Vault</button>
           <select class="form-control" v-model="newVaultKeep.vaultId" >
             <option data-offset="" v-for="vault in vaults" :key="vault.id" :vaultProp="vault"> {{vault.name}}</option>
-            </select>
+            </select> -->
         </form>
       </div>
     </div>
@@ -48,10 +48,12 @@ export default {
   props:["keepProp" , "vaultProp"],
   data(){
     return{
-      newVaultKeep: {
-        vaultId: 2 , 
-        keepId: 2 ,
-      },
+      // newVaultKeep: {
+      //   id: 2 ,
+      //   vaultId: 1 , 
+      //   keepId: 1 ,
+      //   creatorId: "d33aace6-b5e0-47c8-a2d9-4c93207627e8" ,
+      // },
     }
   },
   // mounted(){

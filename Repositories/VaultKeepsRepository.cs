@@ -18,9 +18,9 @@ namespace Keepr.Repositories
     {
       string sql = @"
       INSERT INTO vaultkeeps
-      (vaultId , keepId)
+      (vaultId , keepId , creatorId)
       VALUES
-      (@VaultId , @KeepId);
+      (@VaultId , @KeepId , @CreatorId);
       ";
       _db.Execute(sql, newVK);
     }

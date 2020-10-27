@@ -1,5 +1,5 @@
 <template>
-<div class="vaults-cards card m-2">
+<div class="vaults-cards card m-2" @click="setActiveVault()">
   <i class="fa fa-times text-danger" v-if="profile.id == vaultProp.creatorId" @click="deleteVault()" aria-hidden="true"></i>
   <div><h2>{{vaultProp.name}}</h2>
   <h2>{{vaultProp.description}}</h2> 
@@ -34,9 +34,15 @@ export default {
   methods: {
      deleteVault(){
       this.$store.dispatch("deleteVault",this.vaultProp.id)
-}
+},
+    setActiveVault(){
+      this.$store.dispatch("setActiveVault" , this.vaultProp)
+      this.$router.push({name: "VaultPage", params: { vaultId:this.vaultProp.id}})
+
+  },    
   }
 }
+
 </script>
 
 <style>

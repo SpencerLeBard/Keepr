@@ -20,14 +20,15 @@
       <li
                 class="nav-item"
                 v-if="$auth.isAuthenticated"
-                :class="{ active: $route.name == 'Profile' }"
+                :class="{ active: $route.name == 'MyProfilePage' }"
               >
                 <router-link
                   class="nav-link text-dark"
-                  :to="{ name: 'Profile' }"
+                  :to="{ name: 'MyProfilePage' }"
                 >Profile</router-link>
               </li>
       <span class="navbar-text">
+        <!-- Consider changing this to a profile picture -->
         <button
           class="btn btn-success"
           @click="login"

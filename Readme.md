@@ -5,31 +5,33 @@
 
 # Requirements
 
-### Monday:
+### Todo:
 
 - View Count - server side in repo/setActiveId
-- ActiveKeep is not hitting server
 
 ### Tuesday:
 
-- Add `keep`to `vault`
+-- dropdown of vaults to select
+-- modal disapears
+
+**SQL foreign key issue**
+
+- Create `vaultkeeps`
+- Add `keeps`to `vault`
 - Delete `keeps` from `vault`s
-- vault page/details
-- routes for vault page
-- in vault page if user is creator they can remove keep from vault
 
 ### Wednesday
 
-- profile page adheres to mock:
+- profile page adheres to mock
 - private vaults - request fails if private **cannot see private vaults**
-- Keeps created by that user
-- Total `keep`s count
-- Anytime a `keep` is `kept in a vault` the keep count is incremented
+- Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
 - Total public `vault`s count
-- Users can only Delete things they created
 
 ### Pretty much done:
 
 - All deletes require confirmation
+- Keeps created by that user (only logged in user works) only gets keeps after get request?
+- in vault page if user is creator they can remove keep from vault
+- Users can only Delete things they created
 
 X - All API Tests pass

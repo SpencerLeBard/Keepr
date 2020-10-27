@@ -4,20 +4,22 @@
   <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>
   <h2>{{keepProp.creator.name}}</h2>
-  <!-- <h2>{{keepProp.creator.picture}}</h2> -->
-  <!-- <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -->
+  <!-- <h2>{{keepProp.creator.picture}}</h2>
+  //NOTE PUT ^^ IN IMG TAG AND MAKE IT FIT SNUG
+  <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -->
   <img :src="keepProp.creator.picture" width="100" height="100" alt="pic" @click="viewProfile()">
-  <div class="modal fade"  id="keepModal" tabindex="-1" role="dialog">
+  <div class="modal fade"  id="keepModal" tabindex="-1">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{activeKeep.name}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <p>Name: {{activeKeep.name}}</p>
+        <p>creator: {{activeKeep.creator}}</p>
         <p>Description: {{activeKeep.description}}</p>
         <p>Views: {{activeKeep.views}}</p>
         <p>Shares: {{activeKeep.shares}}</p>
@@ -25,8 +27,13 @@
         <p>{{activeKeep.img}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click="createVaultKeep()" >Save to Vault</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary" @click="createVaultKeep()" >Save to Vault</button> -->
+        <form @submit.prevent="createVaultKeep()">
+            <button class="btn btn-danger">Save to Vault</button>
+          <select class="form-control" v-model="newVaultKeep.vaultId" >
+            <option data-offset="" v-for="vault in vaults" :key="vault.id" :vaultProp="vault"> {{vault.name}}</option>
+            </select>
+        </form>
       </div>
     </div>
   </div>
@@ -37,15 +44,13 @@
 <script>
 export default {
   name: "keeps-component",
-  props:["keepProp"],
+  props:["keepProp" , "vaultProp"],
   data(){
     return{
-      // newVaultKeep: {
-      //   creatorId : keepProp.creatorId ,
-      //   vaultId: 2 , 
-      //   keepId: 2 ,
-      //   creatorId: "d1346e0c-3732-45fc-ad6b-237fa1a0b73d"
-      // },
+      newVaultKeep: {
+        vaultId: 2 , 
+        keepId: 2 ,
+      },
     }
   },
   // mounted(){
@@ -61,6 +66,9 @@ export default {
     keep() {
       return this.$store.state.keeps
     },
+    vaults(){
+      return this.$store.state.vaults
+    }
   },
   methods:{
 
@@ -75,15 +83,11 @@ export default {
       this.$store.dispatch("deleteKeep",this.keepProp.id)
 },
     createVaultKeep(){
-       var newVaultKeep = {
-        vaultId: 2 , 
-        keepId: 2 ,
-        creatorId: "d1346e0c-3732-45fc-ad6b-237fa1a0b73d"
+      this.$store.dispatch("createVaultKeep" , newVaultKeep)
       } 
-    this.$store.dispatch("createVaultKeep" , newVaultKeep)
   }
 }
-}
+
 </script>
 
 <style>
@@ -91,6 +95,8 @@ export default {
   height: 40vh;
   width: 25vw;
 }
-
+/* .modal {
+  z-index: -1;
+} */
 
 </style>

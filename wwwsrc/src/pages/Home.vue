@@ -2,7 +2,7 @@
   <div class="home container-fluid"> 
 <div class="row">
      <div v-if="$auth.isAuthenticated">
-      <form @submit.prevent="createKeep">
+      <form @submit.prevent="createKeep()">
         <div class="form-group card">
       <button class="btn btn-success" type="submit">Create Keep</button>
       <input class="form-control" placeholder="Keep Title ... " type="text" v-model="newKeep.name">
@@ -27,9 +27,9 @@ export default {
   name: "home",
   props:["keepProp"],
   mounted(){
-    this.$store.dispatch("getKeeps"),
-    this.$store.dispatch("getActiveKeep" , this.$route.params.keepId)
-    this.$store.dispatch("getProfile" , this.$route.params.profile)
+    this.$store.dispatch("getKeeps")
+    // this.$store.dispatch("getActiveKeep" , this.$route.params.keepId)
+    // this.$store.dispatch("getProfile" , this.$route.params.profile)
     // console.log(this.profile);
 
   },

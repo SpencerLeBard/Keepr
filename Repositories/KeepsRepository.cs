@@ -62,9 +62,9 @@ namespace Keepr.Repositories
     //   keep.*,
     //   profile.*
     //   FROM keeps keep
-    //   UPDATE keeps 
+    //   UPDATE keep.id 
     //   SET 
-    //   keeps.views = keeps.views + 1 
+    //   keep.views = keep.views + 1 
     //   JOIN profiles profile on keep.creatorId = profile.Id
     //   WHERE keep.id = @id
     //   ";
@@ -94,6 +94,18 @@ namespace Keepr.Repositories
             WHERE id = @Id;";
       _db.Execute(sql, keepData);
       return keepData;
+    }
+    internal IEnumerable<Keep> GetKeepsByCreatorId(string queryProfile)
+    {
+      string sql = @"
+    SELECT
+    keep.*,
+    profile.* 
+    FROM keeps keep 
+    JOIN profiles profile on keep.creatorId = profile.Id
+    WHERE keep.creatorId = @queryProfile
+      ";
+      return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { queryProfile }, splitOn: "id");
     }
   }
 }

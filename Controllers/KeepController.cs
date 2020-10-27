@@ -97,24 +97,24 @@ namespace Keepr.Controllers
 
       }
     }
-    [HttpPut("{id}")]
-    [Authorize]
-    public async Task<ActionResult<Keep>> KeepViewCounter(int id, [FromBody] Keep keepData)
-    {
-      try
-      {
-        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        keepData.CreatorId = userInfo.Id;
-        keepData.Creator = userInfo;
-        keepData.Id = id;
-        return Ok(_serv.KeepViewCounter(keepData, userInfo.Id));
-      }
-      catch (System.Exception error)
-      {
+    // [HttpPut("{id}")]
+    // [Authorize]
+    // public async Task<ActionResult<Keep>> KeepViewCounter(int id, [FromBody] Keep keepData)
+    // {
+    //   try
+    //   {
+    //     Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+    //     keepData.CreatorId = userInfo.Id;
+    //     keepData.Creator = userInfo;
+    //     keepData.Id = id;
+    //     return Ok(_serv.KeepViewCounter(keepData, userInfo.Id));
+    //   }
+    //   catch (System.Exception error)
+    //   {
 
-        return BadRequest(error.Message);
+    //     return BadRequest(error.Message);
 
-      }
-    }
+    //   }
+    // }
   }
 }

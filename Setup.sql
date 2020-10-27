@@ -53,23 +53,23 @@
 -- )
 -- INSERT INTO vaults ( name , description, isPrivate , creatorId) VALUES ("Vaultusertest", "testtest" , 0 , "d1346e0c-3732-45fc-ad6b-237fa1a0b73d");
 
-CREATE TABLE vaultkeeps
-(
-  id int AUTO_INCREMENT,
-  vaultId INT,
-  keepId INT,
-  creatorId VARCHAR(255),
-  PRIMARY KEY (id),
-    FOREIGN KEY (creatorId)
-    REFERENCES profiles(id)
-    ON DELETE CASCADE
-    FOREIGN KEY (vaultId)
-    REFERENCES vaults (id) 
-    ON DELETE CASCADE
-    FOREIGN KEY (keepId) 
-    REFERENCES keeps (id)
-    ON DELETE CASCADE
-);
+-- CREATE TABLE vaultkeeps
+-- (
+--   id int AUTO_INCREMENT,
+--   vaultId INT,
+--   keepId INT,
+--   creatorId VARCHAR(255),
+--   PRIMARY KEY (id),
+--     FOREIGN KEY (creatorId)
+--     REFERENCES profiles(id)
+--     ON DELETE CASCADE,
+--     FOREIGN KEY (vaultId)
+--     REFERENCES vaults(id) 
+--     ON DELETE CASCADE,
+--     FOREIGN KEY (keepId) 
+--     REFERENCES keeps(id)
+--     ON DELETE CASCADE
+-- );
 
 -- DROP TABLE vaultkeeps;
 

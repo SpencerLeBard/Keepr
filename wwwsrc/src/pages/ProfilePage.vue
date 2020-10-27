@@ -37,7 +37,7 @@ export default {
   props: ["vaultProp" , "keepProp"],
   mounted(){
     this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
-    this.$store.dispatch("getVaults" , this.$route.params.profileId)
+    this.$store.dispatch("getVaultsByProfile" , this.$route.params.profileId)
      this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
   },
   data(){

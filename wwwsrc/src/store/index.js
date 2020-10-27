@@ -68,7 +68,7 @@ export default new Vuex.Store({
         console.error(error)
       }
     } ,
-    async getVaults({commit , dispatch} , vaultData){
+    async getVaultsByProfile({commit , dispatch} , vaultData){
       try {
         let res = await api.get("profiles/" + vaultData + "/vaults")
         commit("setVaults" , res.data)
@@ -161,14 +161,14 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
-    async keepViewsCount({commit , dispatch} , keepData){
-      try{
-      let res = await api.put("keeps/" + keepData)
-      commit("setActiveKeep", res.data)
-      // dispatch("keepViewCount" , keepData.id)
-      } catch(error){
-        console.error(error);
-      }
-    }
+    // async keepViewsCount({commit , dispatch} , keepData){
+    //   try{
+    //   let res = await api.put("keeps/" + keepData)
+    //   commit("setActiveKeep", res.data)
+    //   // dispatch("keepViewCount" , keepData.id)
+    //   } catch(error){
+    //     console.error(error);
+    //   }
+    // }
   }
 });

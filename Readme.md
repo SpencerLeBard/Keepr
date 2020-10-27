@@ -12,10 +12,9 @@
 ### Tuesday:
 
 -- dropdown of vaults to select
--- modal disapears
+-- modal disapear
 
-**SQL foreign key issue**
-
+- SQL foreign key issue: "Cannot add or update a child row: a foreign key constraint fails"
 - Create `vaultkeeps`
 - Add `keeps`to `vault`
 - Delete `keeps` from `vault`s

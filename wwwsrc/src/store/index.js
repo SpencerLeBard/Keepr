@@ -46,6 +46,9 @@ export default new Vuex.Store({
     },
     addVaultKeep(state , vaultkeep){
       state.vaultkeeps = vaultkeep
+    },
+    keepViewCount(state , keep){
+      state.keeps = keep
     }
   },
   actions: {
@@ -156,6 +159,15 @@ export default new Vuex.Store({
         dispatch("setActiveVault" , res.data)
       } catch (error) {
         console.log(error)
+      }
+    },
+    async keepViewsCount({commit , dispatch} , keepData){
+      try{
+      let res = await api.put("keeps/" + keepData)
+      commit("setActiveKeep", res.data)
+      // dispatch("keepViewCount" , keepData.id)
+      } catch(error){
+        console.error(error);
       }
     }
   }

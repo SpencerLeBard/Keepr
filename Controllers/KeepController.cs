@@ -97,8 +97,7 @@ namespace Keepr.Controllers
 
       }
     }
-    [HttpPut("{id}")]
-    [Authorize]
+    [HttpPut("{id}")] //keeps/:keepId
     public async Task<ActionResult<Keep>> KeepViewCounter(int id, [FromBody] Keep keepData)
     {
       try

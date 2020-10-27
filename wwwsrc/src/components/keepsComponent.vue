@@ -1,5 +1,5 @@
 <template>
-<div class="keep-cards card col-3 m-2" @click="setActiveKeep()"> 
+<div class="keep-cards card col-3 m-2" @click="setActiveKeep() + keepViewsCount()"> 
    <i class="fa fa-times text-danger" v-if="profile.id == keepProp.creatorId" @click="deleteKeep()" aria-hidden="true"></i>
   <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>
@@ -8,7 +8,8 @@
   //NOTE PUT ^^ IN IMG TAG AND MAKE IT FIT SNUG
   <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -->
   <img :src="keepProp.creator.picture" width="100" height="100" alt="pic" @click="viewProfile()">
-  <div class="modal fade"  id="keepModal" tabindex="-1">
+  <div class="modal fade"  id="keepModal" tabindex="-1" 
+  data-toggle="modal" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -19,7 +20,7 @@
       </div>
       <div class="modal-body">
         <p>Name: {{activeKeep.name}}</p>
-        <p>creator: {{activeKeep.creator}}</p>
+        <!-- <p>creator: {{activeKeep.creator}}</p> -->
         <p>Description: {{activeKeep.description}}</p>
         <p>Views: {{activeKeep.views}}</p>
         <p>Shares: {{activeKeep.shares}}</p>
@@ -78,13 +79,17 @@ export default {
   },
     setActiveKeep(){
       this.$store.dispatch("setActiveKeep" , this.keepProp)
+      // this.$store.dispatch("keepViewsCount" , this.keepProp)
     },
     deleteKeep(){
       this.$store.dispatch("deleteKeep",this.keepProp.id)
 },
     createVaultKeep(){
       this.$store.dispatch("createVaultKeep" , newVaultKeep)
-      } 
+      } ,
+      keepViewsCount(){ 
+      this.$store.dispatch("keepViewsCount" , this.keepProp.id)
+      }
   }
 }
 

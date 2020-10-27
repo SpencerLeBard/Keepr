@@ -64,7 +64,7 @@ namespace Keepr.Repositories
     //   FROM keeps keep
     //   UPDATE keep.id 
     //   SET 
-    //   keep.views = keep.views + 1 
+    //   keep.views = keep.views++
     //   JOIN profiles profile on keep.creatorId = profile.Id
     //   WHERE keep.id = @id
     //   ";

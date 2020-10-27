@@ -19,10 +19,11 @@
       </div>
     </div>
       <div class="row">
+        <h1>Vaults</h1>
       <vaults-component v-for="vault in vaults" :key="vault.id" :vaultProp="vault"/>
       </div>
       <div class="row">
-
+        <h1>Keeps</h1>
       <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/> 
       </div>
         </div>

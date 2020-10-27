@@ -36,10 +36,8 @@ export default {
   data(){
     return {
       keepData: {
-        // creatorId : keepProp.creatorId
       },
       newKeep:{
-        // creatorId: this.$route.params.profile
       },
     }
   },

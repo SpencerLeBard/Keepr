@@ -39,6 +39,10 @@ export default {
     this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
     this.$store.dispatch("getVaultsByProfile" , this.$route.params.profileId)
      this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
+
+    //FIXME PROFILE KEEPS SHOW UP IN VIEW TOOLS
+    // VUE TOOLS ON LEFT SAY SETTING KEEPS BUT NOT GETTING
+
   },
   data(){
     return{

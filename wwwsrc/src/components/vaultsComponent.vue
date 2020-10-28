@@ -37,6 +37,7 @@ export default {
 },
     setActiveVault(){
       this.$store.dispatch("setActiveVault" , this.vaultProp)
+      this.$store.dispatch("getKeepsByVaultId" , this.vaultId)
       this.$router.push({name: "VaultPage", params: { vaultId:this.vaultProp.id}})
 
   },    

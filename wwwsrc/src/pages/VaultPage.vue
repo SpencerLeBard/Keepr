@@ -30,6 +30,9 @@ export default {
     },
     activeVault(){
       return this.$store.state.activeVault
+    },
+    activeVaultKeeps(){
+      return this.$store.state.activeVaultKeeps
     }
       },
     components: {

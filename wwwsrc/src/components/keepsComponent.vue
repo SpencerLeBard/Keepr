@@ -34,9 +34,9 @@
             <option v-for="vault in vaults" :key="vault.id" :vaultProp="vault" > {{vaultProp.name}}</option>
             </select>
         </form>
-        <button type="button" class="btn btn-primary" @submit.prevent="createVaultKeep()" >Save to Vault</button>  -->
-
-   <form class="col" @submit.prevent="createVaultKeep()" >
+        <button type="button" class="btn btn-primary" @submit.prevent="createVaultKeep()" >Save to Vault</button>  
+            NOTE ^^TRY ABOVE IF BELOW ISINT WORKING -->           
+   <form class="col d-flex" @submit.prevent="createVaultKeep()" >
             <button type="submit" class="btn btn-danger">Save to Vault</button>
           <select class="form-control" v-model="newVaultKeep.vaultId" >
             <option v-for="vault in vaults" :key="vault.id" :vaultProp="vault" :value="vault.id"> {{vault.name}}</option>
@@ -92,19 +92,19 @@ export default {
       this.$store.dispatch("getSearchedProfile" , this.keepProp.creator.id)
       // this.$store.dispatch("getVaultsByProfile" , this.profile.id)
       // this.$store.dispatch("getProfileKeeps" , this.profile.id)
+      //NOTE MAYBE THIS TO GET INFO WHEN ROUTING
 
   },
     setActiveKeep(){
       this.$store.dispatch("setActiveKeep" , this.keepProp)
       this.$store.dispatch("getVaultsByProfile" , this.profile.id)
-      
       // this.$store.dispatch("keepViewsCount" , this.keepProp)
     },
     deleteKeep(){
       this.$store.dispatch("deleteKeep",this.keepProp.id)
 },
     createVaultKeep(){
-      this.newVaultKeep.keepId = this.keepProp.id;
+      this.newVaultKeep.keepId = this.activeKeep.id;
       this.$store.dispatch("createVaultKeep" , this.newVaultKeep)
     //NOTE TRY BELOW IF THIS DOESNT WORK 
       // this.$store.dispatch("createVaultKeep" , this.activeKeep.id)

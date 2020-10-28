@@ -8,10 +8,6 @@
 ### Todo:
 
 - View Count - server side in repo/setActiveId
-
-### Tuesday:
-
-- Add `keeps`to `vault`
 - Delete `keeps` from `vault`s
 
 ### Wednesday
@@ -23,8 +19,8 @@
 ### Pretty much done:
 
 - All deletes require confirmation
-- Keeps created by that user (only logged in user works) only gets keeps after get request?
+- See keeps created by that user in profile (only logged in user works) only gets keeps after get request?
 - in vault page if user is creator they can remove keep from vault
-- private vaults - request fails if private (fires on mounted)
+- profile has private vaults - request fails if private (fires on mounted)
 
 X - All API Tests pass

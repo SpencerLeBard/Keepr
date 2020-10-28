@@ -51,13 +51,13 @@ namespace Keepr.Controllers
       }
     }
     //NOTE GET KEEPS BY VAULT ID
-    [HttpGet("{vaultId}")] //Path: api/vaultkeeps/:vaultId
+    [HttpGet("{vaultId}")] //Path: api/vaultkeeps/:vaultId/
     public async Task<ActionResult<VaultKeep>> GetKeepsByVaultById(int vaultId)
     {
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        IEnumerable<Keep> res = (IEnumerable<Keep>)_serv.GetKeepsByVaultId(userInfo?.Id, vaultId);
+        IEnumerable<Keep> res = _serv.GetKeepsByVaultId(userInfo?.Id, vaultId);
         return Ok(res);
       }
       catch (System.Exception e)

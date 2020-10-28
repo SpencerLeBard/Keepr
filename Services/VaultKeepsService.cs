@@ -26,9 +26,9 @@ namespace Keepr.Services
       }
       _repo.Delete(id);
     }
-    internal Keep GetKeepsByVaultId(string creatorId, int vaultId)
+    internal IEnumerable<Keep> GetKeepsByVaultId(string creatorId, int vaultId)
     {
-      Keep original = (Keep)_repo.GetKeepsByVaultId(vaultId);
+      IEnumerable<Keep> original = _repo.GetKeepsByVaultId(vaultId);
       // if (original == null)
       // {
       //   throw new Exception("Invalid ID");

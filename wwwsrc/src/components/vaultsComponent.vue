@@ -1,6 +1,6 @@
 <template>
 <div class="vaults-cards card m-2" @click="setActiveVault()">
-  <i class="fa fa-times text-danger" v-if="profile.id == vaultProp.creatorId" @click="deleteVault()" aria-hidden="true"></i>
+  <i class="fa fa-times text-danger fa-3x" v-if="profile.id == vaultProp.creatorId" @click="deleteVault()" aria-hidden="true"></i>
   <div><h2>{{vaultProp.name}}</h2>
   <h2>{{vaultProp.description}}</h2> 
   <h2>{{vaultProp.creator.name}}</h2> 
@@ -47,5 +47,7 @@ export default {
 </script>
 
 <style>
-
+.delete{
+  height: 10vh;
+}
 </style>

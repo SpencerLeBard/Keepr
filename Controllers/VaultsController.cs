@@ -82,7 +82,6 @@ namespace Keepr.Controllers
       }
     }
     [HttpDelete("{id}")]
-    [Authorize]
     public async Task<ActionResult<string>> Delete(int id)
     {
       try

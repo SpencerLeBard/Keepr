@@ -23,7 +23,7 @@ namespace Keepr.Repositories
         (name , description, img , shares , views , keeps , creatorId)
         VALUES
         (@Name , @Description , @Img , @Views , @Shares , @Keeps , @CreatorId);
-        SELECT LAST_INSERT_ID;";
+        SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, newKeep);
     }
 

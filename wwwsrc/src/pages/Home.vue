@@ -57,6 +57,7 @@ export default {
   // },
   createKeep(){
     this.$store.dispatch("createKeep" , this.newKeep)
+    // this.$store.dispatch("getKeeps")
   }
 },
   components: {keepsComponent},

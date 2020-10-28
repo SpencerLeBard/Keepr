@@ -22,7 +22,7 @@ namespace Keepr.Repositories
         (name , description, isPrivate , creatorId)
         VALUES
         (@Name , @Description , @isPrivate , @CreatorId);
-        SELECT LAST_INSERT_ID;";
+        SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, newVault);
     }
     internal Vault GetById(int id)

@@ -23,4 +23,9 @@
 - in vault page if user is creator they can remove keep from vault
 - profile has private vaults - request fails if private (fires on mounted)
 
-X - All API Tests pass
+X - All API Tests pass:
+failed tests:
+-Auth: edit keep by id, delete vault keep, get private vault, get vault , get keepby id
+keeps: edit keep by id
+vault: get private vault
+vaultkeep: delete vaultkeep

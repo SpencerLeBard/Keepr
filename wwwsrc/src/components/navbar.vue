@@ -17,14 +17,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <li
+      <li @click="viewProfile()"
                 class="nav-item"
                 v-if="$auth.isAuthenticated"
-                :class="{ active: $route.name == 'MyProfilePage' }"
+                :class="{ active: $route.name == 'Profile' }"
               >
                 <router-link
                   class="nav-link text-dark"
-                  :to="{ name: 'MyProfilePage' }"
+                  :to="{ name: 'Profile' }"
                 >Profile</router-link>
               </li>
       <span class="navbar-text">
@@ -48,6 +48,13 @@ import { setBearer, resetBearer } from "../services/AxiosService";
 import {ProfilePage} from "../pages/ProfilePage"
 export default {
   name: "Navbar",
+   mounted(){
+     this.$store.dispatch("getProfile");
+    this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
+    this.$store.dispatch("getVaultsByProfile" , this.$route.params.profileId)
+     this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
+     this.$store.dispatch("getKeepsByCreatorId", this.$route.params.profileId);
+  },
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
@@ -60,8 +67,27 @@ export default {
       resetBearer();
       await this.$auth.logout({ returnTo: window.location.origin });
     },
+    viewProfile(){
+      this.$router.push({name: "Profile", params: { profileId:this.profile}})
+      this.$store.dispatch("getSearchedProfile" , this.profile.id)
   },
-};
+
+     },
+   computed:{
+    profile(){
+      return this.$store.state.profile
+    },
+    vaults(){
+      return this.$store.state.vaults
+    },
+    keeps(){
+      return this.$store.state.profileKeeps;
+    },
+    searchedProfile(){
+      return this.$store.state.searchedProfile
+    },
+   }
+}
 </script>
 
 <style></style>

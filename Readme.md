@@ -18,7 +18,7 @@
 
 ### Thursday:
 
-- profile page adheres to mock / navigate to profile not special page
+- navigate to profile not special page
 - Total public `vault`s count
 
 ### Pretty much done:

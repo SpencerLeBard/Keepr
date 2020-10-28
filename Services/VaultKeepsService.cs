@@ -17,6 +17,23 @@ namespace Keepr.Services
     {
       _repo.Create(newVK);
     }
-
+    internal void Delete(int id)
+    {
+      var data = _repo.GetById(id);
+      if (data == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      _repo.Delete(id);
+    }
+    internal Keep GetKeepsByVaultId(string creatorId, int vaultId)
+    {
+      Keep original = (Keep)_repo.GetKeepsByVaultId(vaultId);
+      // if (original == null)
+      // {
+      //   throw new Exception("Invalid ID");
+      // }
+      return original;
+    }
   }
 }

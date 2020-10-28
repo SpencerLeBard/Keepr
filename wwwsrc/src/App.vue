@@ -16,7 +16,9 @@ export default {
     if (this.$auth.isAuthenticated) {
       setBearer(this.$auth.bearer);
       this.$store.dispatch("getProfile")
-      //NOTE if you want to do something everytime the user logs in, do so here
+      this.$store.dispatch("getKeeps")
+      this.$store.dispatch("getVaultsByProfile")
+      
     }
   },
   components: {

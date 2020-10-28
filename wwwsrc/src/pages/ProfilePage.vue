@@ -49,7 +49,8 @@ export default {
     }
     },
   computed: {
-    keeps(){
+    keep(){
+      // this.$store.commit("getProfileKeeps" , this.$route.params.profileId)
       return this.$store.state.profileKeeps;
     },
     profile(){
@@ -63,12 +64,11 @@ export default {
     }
   },
   methods: {
-       viewProfile(){
+      viewProfile(){
       this.$router.push({name: "Profile", params: { profileId:this.keepProp.creator.id}})
   },
      createVault(){
     this.$store.dispatch("createVault" , this.newVault)
-    console.log(this.newVault);
   }
   },
   components: {vaultsComponent , keepsComponent},

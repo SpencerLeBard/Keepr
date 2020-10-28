@@ -11,16 +11,12 @@
 
 ### Tuesday:
 
--- dropdown of vaults to select
-
-- Create `vaultkeeps`
 - Add `keeps`to `vault`
 - Delete `keeps` from `vault`s
 
 ### Wednesday
 
 - profile page adheres to mock
-- private vaults - request fails if private **cannot see private vaults**
 - Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
 - Total public `vault`s count
 
@@ -29,6 +25,6 @@
 - All deletes require confirmation
 - Keeps created by that user (only logged in user works) only gets keeps after get request?
 - in vault page if user is creator they can remove keep from vault
-- Users can only Delete things they created
+- private vaults - request fails if private (fires on mounted)
 
 X - All API Tests pass

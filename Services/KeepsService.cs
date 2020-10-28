@@ -25,13 +25,7 @@ namespace Keepr.Services
     {
       return _repo.GetAll();
     }
-    //NOTE FURST TRY
-    // internal IEnumerable<Keep> GetAll(string CreatorId)
-    // {
-    //   IEnumerable<Keep> keeps = _repo.GetAll();
-    //   return keeps.ToList().FindAll(k => k.CreatorId == CreatorId);
-    //   //NOTE ADD SOMETHING AFTER CREATOR ID || IF PUBLIC/SHARED
-    // }
+
     internal Keep GetById(string creatorId, int id)
     {
       Keep original = _repo.GetById(id);

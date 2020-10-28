@@ -21,16 +21,47 @@ namespace Keepr.Controllers
     }
 
     [HttpPost]
-    public ActionResult<string> Create([FromBody] VaultKeep newVK)
+    public async Task<ActionResult<VaultKeep>> Create([FromBody] VaultKeep newVK)
     {
       try
       {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        newVK.CreatorId = userInfo.Id;
         _serv.Create(newVK);
-        return Ok("nice");
+        return Ok("nice job");
       }
       catch (System.Exception e)
       {
 
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult<string> Delete(int id)
+    {
+      try
+      {
+        _serv.Delete(id);
+        return Ok("success");
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+    //NOTE GET KEEPS BY VAULT ID
+    [HttpGet("{vaultId}")] //Path: api/vaultkeeps/:vaultId
+    public async Task<ActionResult<VaultKeep>> GetKeepsByVaultById(int vaultId)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        IEnumerable<Keep> res = (IEnumerable<Keep>)_serv.GetKeepsByVaultId(userInfo?.Id, vaultId);
+        return Ok(res);
+      }
+      catch (System.Exception e)
+      {
         return BadRequest(e.Message);
       }
     }

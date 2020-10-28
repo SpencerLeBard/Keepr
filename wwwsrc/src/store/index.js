@@ -68,9 +68,9 @@ export default new Vuex.Store({
         console.error(error)
       }
     } ,
-    async getVaultsByProfile({commit , dispatch} , vaultData){
+    async getVaultsByProfile({commit , dispatch} , profileId){
       try {
-        let res = await api.get("profiles/" + vaultData + "/vaults")
+        let res = await api.get("profiles/" + profileId + "/vaults")
         commit("setVaults" , res.data)
       } catch (error) {
         console.error(error)
@@ -111,7 +111,6 @@ export default new Vuex.Store({
     async createKeep({ commit, dispatch }, keepData) {
       try {
         let res = await api.post("vaults", keepData)
-        // console.log(res);
         commit("addKeep" )
         dispatch("getKeeps")
       } catch (error) {
@@ -138,8 +137,9 @@ export default new Vuex.Store({
     },
     async createVaultKeep({ commit, dispatch }, vaultKeepData) {
       try {
-        let res = await api.post("vaultkeeps/", vaultKeepData)
-        commit("addVaultKeep" )
+        let res = await api.post("vaultkeeps", vaultKeepData)
+        console.log(res);
+        commit("addVaultKeep")
       } catch (error) {
         console.error(error)
       }

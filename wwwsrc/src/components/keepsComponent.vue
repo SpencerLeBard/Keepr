@@ -27,29 +27,21 @@
         <p>Keeps: {{activeKeep.keeps}}</p>
         <p>{{activeKeep.img}}</p>
       </div>
-      <div class="modal-footer row" @click.stop>
-            <button type="submit" class="btn btn-danger" @submit.prevent="createVaultKeep()" >Save to Vault</button>
-        <form class="col">
+      <div class="modal-footer row" @click.stop >
+        <!-- <form class="col" @submit.prevent="createVaultKeep()" >
+            <button type="submit" class="btn btn-danger"  >Save to Vault</button>
           <select class="form-control" v-model="newVaultKeep"  >
-            <option v-for="vault in vaults" :key="vault.id" :vaultProp="vault"> {{vaults.name}}</option>
+            <option v-for="vault in vaults" :key="vault.id" :vaultProp="vault" > {{vaultProp.name}}</option>
             </select>
-        </form> 
-        <!-- <button type="button" class="btn btn-primary" @submit.prevent="createVaultKeep()" >Save to Vault</button> -->
+        </form>
+        <button type="button" class="btn btn-primary" @submit.prevent="createVaultKeep()" >Save to Vault</button>  -->
 
-           <!-- <ul
-          class="list-group m-1 col"
-          v-for="vault in vaults"
-          :key="vault.id">
-          <li class="list-group-item">
-            <router-link
-              class="list-group"
-              >{{ vault.name }}</router-link
-            >
-          </li>
-        </ul> -->
-
-
-
+   <form class="col" @submit.prevent="createVaultKeep()" >
+            <button type="submit" class="btn btn-danger">Save to Vault</button>
+          <select class="form-control" v-model="newVaultKeep.vaultId" >
+            <option v-for="vault in vaults" :key="vault.id" :vaultProp="vault" :value="vault.id"> {{vault.name}}</option>
+            </select>
+        </form>
       </div>
     </div>
   </div>
@@ -58,23 +50,22 @@
 </template>
 
 <script>
+import vaultComponent from "../components/vaultsComponent"
 export default {
   name: "keeps-component",
   props:["keepProp" , "vaultProp"],
    mounted(){
-    this.$store.dispatch("getVaultsByProfile" , this.$route.params.vaultId)
-    this.$store.dispatch("getActiveKeep" , this.$route.params.keepId)
-    this.$store.dispatch("getProfile", this.$route.params.profile);
+     this.$store.dispatch("getProfile", this.$route.params.profileId);
+    // this.$store.dispatch("getVaultsByProfile" , this.$route.params.vaultId)
+    // this.$store.dispatch("getActiveKeep" , this.$route.params.keepId)
 
    },
   data(){
     return{
-      // newVaultKeep: {
-      //   id: 2 ,
-      //   vaultId: 1 , 
-      //   keepId: 3 ,
-      //   creatorId: "d33aace6-b5e0-47c8-a2d9-4c93207627e8" ,
-      // },
+      newVaultKeep: {
+        keepId: 0 ,
+        vaultId : 0 
+      },
     }
   },
   computed:{
@@ -83,6 +74,9 @@ export default {
     },
     activeKeep() {
       return this.$store.state.activeKeep;
+    },
+    activeVault() {
+      return this.$store.state.activeVault;
     },
     keep() {
       return this.$store.state.keeps
@@ -96,22 +90,31 @@ export default {
     viewProfile(){
       this.$router.push({name: "Profile", params: { profileId:this.keepProp.creator.id}})
       this.$store.dispatch("getSearchedProfile" , this.keepProp.creator.id)
+      // this.$store.dispatch("getVaultsByProfile" , this.profile.id)
+      // this.$store.dispatch("getProfileKeeps" , this.profile.id)
+
   },
     setActiveKeep(){
       this.$store.dispatch("setActiveKeep" , this.keepProp)
+      this.$store.dispatch("getVaultsByProfile" , this.profile.id)
+      
       // this.$store.dispatch("keepViewsCount" , this.keepProp)
     },
     deleteKeep(){
       this.$store.dispatch("deleteKeep",this.keepProp.id)
 },
     createVaultKeep(){
-      debugger
-      this.$store.dispatch("createVaultKeep" , newVaultKeep)
+      this.newVaultKeep.keepId = this.keepProp.id;
+      this.$store.dispatch("createVaultKeep" , this.newVaultKeep)
+    //NOTE TRY BELOW IF THIS DOESNT WORK 
+      // this.$store.dispatch("createVaultKeep" , this.activeKeep.id)
+      // this.$store.dispatch("createVaultKeep" , this.activeVault)
       } 
       // keepViewsCount(){ 
       // this.$store.dispatch("keepViewsCount" , this.keepProp.id)
       // }
-  }
+  },
+    components: {vaultComponent}
 }
 
 </script>
@@ -124,9 +127,9 @@ export default {
 /* .modal {
   z-index: -1;
 } */
-select{
+/* select{
     width: 100px;
     text-overflow: scroll;
-}
+} */
 
 </style>

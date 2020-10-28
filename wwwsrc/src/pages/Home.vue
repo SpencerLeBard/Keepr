@@ -57,7 +57,6 @@ export default {
   // },
   createKeep(){
     this.$store.dispatch("createKeep" , this.newKeep)
-    console.log(this.newKeep);
   }
 },
   components: {keepsComponent},

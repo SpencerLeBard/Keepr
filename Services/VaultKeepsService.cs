@@ -20,10 +20,10 @@ namespace Keepr.Services
     internal void Delete(int id)
     {
       var data = _repo.GetById(id);
-      if (data == null)
-      {
-        throw new Exception("Invalid Id");
-      }
+      // if (data == null)
+      // {
+      //   throw new Exception("Invalid Id");
+      // }
       _repo.Delete(id);
     }
     internal IEnumerable<Keep> GetKeepsByVaultId(string creatorId, int vaultId)

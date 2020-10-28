@@ -5,24 +5,24 @@
 
 # Requirements
 
-### Todo:
+### Wednesday Night 1:
+
+- Remove `keeps` from `vault`s
+- in vault page if user is creator they can remove keep from vault
+- profile has private vaults - request fails if private (fires on mounted)
+
+### Wednesday Night 2:
 
 - View Count - server side in repo/setActiveId
-- Remove `keeps` from `vault`s
+- Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
 
-### Wednesday
+### Thursday:
 
-- profile page adheres to mock
+- profile page adheres to mock / navigate to profile not special page
 - Total public `vault`s count
 
 ### Pretty much done:
 
-- All deletes require confirmation
-- See keeps created by that user in profile (only logged in user works) only gets keeps after get request?
-- in vault page if user is creator they can remove keep from vault
-- profile has private vaults - request fails if private (fires on mounted)
-
-X Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
 X - All API Tests pass:
 failed tests:
 -Auth: edit keep by id, delete vault keep, get private vault, get vault , get keepby id

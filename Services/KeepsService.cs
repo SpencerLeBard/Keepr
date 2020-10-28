@@ -63,7 +63,7 @@ namespace Keepr.Services
 
     internal IEnumerable<Keep> GetKeepsByCreatorId(string queryProfile, string creatorId)
     {
-      return _repo.GetKeepsByCreatorId(queryProfile).ToList().FindAll(v => v.CreatorId == creatorId);
+      return _repo.GetKeepsByCreatorId(queryProfile);
     }
 
   }

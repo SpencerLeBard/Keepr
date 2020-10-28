@@ -32,6 +32,10 @@ namespace Keepr.Services
       //NOTE WHY KEEP THROWING ACCESS DENIED
       return original;
     }
+    // internal IEnumerable<Vault> GetVaultsByCreatorId(string queryProfile, string creatorId)
+    // {
+    //   return _repo.GetVaultsByCreatorId(queryProfile).ToList().FindAll(v => v.CreatorId == creatorId || v.IsPrivate == false);
+    // }
     internal IEnumerable<Vault> GetVaultsByCreatorId(string queryProfile, string creatorId)
     {
       return _repo.GetVaultsByCreatorId(queryProfile).ToList().FindAll(v => v.CreatorId == creatorId || v.IsPrivate == false);

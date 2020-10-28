@@ -48,6 +48,9 @@ export default new Vuex.Store({
     addVaultKeep(state , vaultkeep){
       state.vaultkeeps = vaultkeep
     },
+    deleteVaultKeep(state , vaultkeep){
+      state.vaultkeeps = vaultkeep
+    },
     keepViewCount(state , keep){
       state.keeps = keep
     },
@@ -72,6 +75,14 @@ export default new Vuex.Store({
         console.error(error)
       }
     } ,
+    // async getKeepsByCreatorId({commit , dispatch} , profileId){
+    //   try {
+    //     let res = await api.get("profiles/" + profileId + "/keeps")
+    //     commit("setKeeps" , res.data)
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // } ,
     async getVaultsByProfile({commit , dispatch} , profileId){
       // debugger
       try {
@@ -138,9 +149,10 @@ export default new Vuex.Store({
     },
     async deleteKeep({ commit, dispatch }, keepId) {
       try {
+        if (await ns.confirmAction("Do you want to delete this board?", "You'll never get it back ...")) {
         await api.delete("keeps/" + keepId)
         dispatch("getKeeps")
-      } catch (error) {
+      }} catch (error) {
         console.error(error)
 
       }
@@ -162,11 +174,20 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async deleteVaultKeep({ commit, dispatch }, vaultKeepData) {
+      try {
+        let res = await api.delete("vaultkeeps/", vaultKeepData)
+        commit("deleteVaultKeep")
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async deleteVault({ commit, dispatch }, vaultId) {
       try {
+        if (await ns.confirmAction("Do you want to delete this board?", "You'll never get it back ...")) {
         await api.delete("vaults/" + vaultId)
         dispatch("getVaults")
-      } catch (error) {
+      }} catch (error) {
         console.error(error)
 
       }

@@ -24,7 +24,9 @@
       </div>
       <div class="row">
         <h1>Keeps</h1>
-      <keeps-component v-for="keep in keeps" :key="keep.id" :keepProp="keep"/> 
+      <profile-keeps-component v-for="keep in keeps" :key="keep.id" :profileKeepsProp="keep" />
+      <!-- {{profileKeeps}} -->
+      <!-- {{profileKeepsProp}} -->
       </div>
         </div>
 </template>
@@ -32,17 +34,15 @@
 <script>
 import keepsComponent from "../components/keepsComponent";
 import vaultsComponent from "../components/vaultsComponent";
+import profileKeepsComponent from "../components/profileKeepsComponent";
 export default {
   name: "profile",
-  props: ["vaultProp" , "keepProp"],
+  props: ["vaultProp" , "keepProp" , "profileKeepsProp"],
   mounted(){
     this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
     this.$store.dispatch("getVaultsByProfile" , this.$route.params.profileId)
      this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
-
-    //FIXME PROFILE KEEPS SHOW UP IN VIEW TOOLS
-    // VUE TOOLS ON LEFT SAY SETTING KEEPS BUT NOT GETTING
-
+     this.$store.dispatch("getKeepsByCreatorId", this.$route.params.profileId);
   },
   data(){
     return{
@@ -53,8 +53,7 @@ export default {
     }
     },
   computed: {
-    keep(){
-      // this.$store.commit("getProfileKeeps" , this.$route.params.profileId)
+    keeps(){
       return this.$store.state.profileKeeps;
     },
     profile(){
@@ -66,9 +65,6 @@ export default {
     searchedProfile(){
       return this.$store.state.searchedProfile
     },
-    keeps(){
-      return this.$store.state.keeps
-    }
   },
   methods: {
       viewProfile(){
@@ -78,7 +74,7 @@ export default {
     this.$store.dispatch("createVault" , this.newVault)
   }
   },
-  components: {vaultsComponent , keepsComponent},
+  components: {vaultsComponent , profileKeepsComponent}
 }
 </script>
 

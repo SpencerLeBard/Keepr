@@ -90,6 +90,7 @@ export default {
     viewProfile(){
       this.$router.push({name: "Profile", params: { profileId:this.keepProp.creator.id}})
       this.$store.dispatch("getSearchedProfile" , this.keepProp.creator.id)
+
       // this.$store.dispatch("getVaultsByProfile" , this.profile.id)
       // this.$store.dispatch("getProfileKeeps" , this.profile.id)
       //NOTE MAYBE THIS TO GET INFO WHEN ROUTING

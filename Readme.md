@@ -8,12 +8,11 @@
 ### Todo:
 
 - View Count - server side in repo/setActiveId
-- Delete `keeps` from `vault`s
+- Remove `keeps` from `vault`s
 
 ### Wednesday
 
 - profile page adheres to mock
-- Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
 - Total public `vault`s count
 
 ### Pretty much done:
@@ -23,6 +22,7 @@
 - in vault page if user is creator they can remove keep from vault
 - profile has private vaults - request fails if private (fires on mounted)
 
+X Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
 X - All API Tests pass:
 failed tests:
 -Auth: edit keep by id, delete vault keep, get private vault, get vault , get keepby id

@@ -73,9 +73,11 @@ export default new Vuex.Store({
       }
     } ,
     async getVaultsByProfile({commit , dispatch} , profileId){
+      // debugger
       try {
         let res = await api.get("profiles/" + profileId + "/vaults")
         commit("setVaults" , res.data)
+        commit("setActiveVault" , res.data)
       } catch (error) {
         console.error(error)
       }
@@ -88,10 +90,22 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
+    // async getActiveVault({commit , dispatch} , profileId){
+    //   try {
+    //     let res = await api.get("profiles/" + profileId + "/vaults")
+    //     commit("setActiveVault" , res.data)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // },
     async getSearchedProfile({commit , dispatch } , profileId){
       try {
         let res = await api.get("profiles/" + profileId)
         commit("setSearchedProfile", res.data)
+        // @ts-ignore
+        $("#keepModal").hide()
+        // @ts-ignore
+        $(".modal-backdrop").hide()
       } catch (error) {
         console.error(error)
       }
@@ -143,7 +157,6 @@ export default new Vuex.Store({
     async createVaultKeep({ commit, dispatch }, vaultKeepData) {
       try {
         let res = await api.post("vaultkeeps", vaultKeepData)
-        console.log(res);
         commit("addVaultKeep")
       } catch (error) {
         console.error(error)
@@ -160,7 +173,7 @@ export default new Vuex.Store({
     },
     async getKeepsByVaultId({commit , dispatch} , vaultData){
       try {
-        let res = await api.get("vaultkeeps/" + vaultData)
+        let res = await api.get("vaults/" + vaultData + "/keeps")
         commit("activeVaultKeeps" , res.data)
       } catch (error) {
         console.log(error)

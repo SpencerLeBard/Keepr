@@ -12,4 +12,10 @@ namespace Keepr.Models
     public int Keeps { get; set; } = 0;
     public Profile Creator { get; set; }
   }
+  //getting all keeps by vault id
+  public class VaultKeepViewModel : Keep
+  {
+    public int VaultKeepId { get; set; }
+  }
+
 }

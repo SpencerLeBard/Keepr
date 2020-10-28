@@ -65,6 +65,9 @@ export default {
     },
     searchedProfile(){
       return this.$store.state.searchedProfile
+    },
+    keeps(){
+      return this.$store.state.keeps
     }
   },
   methods: {

@@ -25,6 +25,8 @@ export default {
     this.$store.dispatch("getActiveVault" , this.$route.params.profileId)
     this.$store.dispatch("getVaultsByProfile" , this.$route.params.profileId)
     this.$store.dispatch("getActiveVaultKeeps" , this.$route.params.vaultId)
+        this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
+
 
 
   },

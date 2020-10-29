@@ -1,26 +1,26 @@
 <template>
-<div>
  <div class="vault-keeps-cards card col m-2" >
-  <div><h2>{{activeVaultKeepProp.name}}</h2>
+    <i class="fa fa-times text-danger fa-3x" v-if="profile.id == activeVaultKeepProp.creatorId" @click="deleteVaultKeep()" />
+  <h2>{{activeVaultKeepProp.name}}</h2>
   <h2>{{activeVaultKeepProp.description}}</h2>
-  <!-- <h2>{{activeVaultKeepProp.description}}</h2> 
-   <h2>{{activeVaultKeepProp.creator.name}}</h2> 
-  <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -->
-    </div> 
     </div>
-  </div>
 </template>
 
 <script>
 export default {
 name: "vault-keeps-component" ,
-  props:["keepsProp" , "activeVaultKeepProp"],
+  props:["keepProp" , "activeVaultKeepProp"],
  mounted(){
    this.$store.dispatch("getKeepsByVaultId" , this.$route.params.vaultId)
    this.$store.dispatch("getActiveVaultKeeps" , this.$route.params.vaultId)
  },
  data() {
-    return {}
+    return {
+    //   deleteVaultKeep:{
+    //     vaultId : this.activeVault.id ,
+    //     keepId : this.activeKeep.id
+    //   }
+     }
     },
     computed:{
       activeVaultKeeps(){
@@ -34,7 +34,22 @@ name: "vault-keeps-component" ,
     },
     vault(){
       return this.$store.state.vaults
+    },
+    activeVault(){
+      return this.$store.state.activeVault
+    },
+    activeKeep(){
+      return this.$store.state.activeKeep
     }
+    },
+    methods:{
+      deleteVaultKeep(){
+      // this.$store.dispatch("deleteVaultKeep", this.activeVault.id)
+      // this.deleteVaultKeep.keepId = this.activeKeep.id;
+      // this.deleteVaultKeep.vaultId = this.activeVault.id;
+      this.$store.dispatch("deleteVaultKeep", this.keepProp.vaultKeepId)
+      debugger
+      },
     }
 }
 </script>

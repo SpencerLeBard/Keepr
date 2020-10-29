@@ -32,14 +32,36 @@ namespace Keepr.Services
       //NOTE WHY KEEP THROWING ACCESS DENIED
       return original;
     }
+
+    //NOTE
+    //if current user.id = profile show everything
+    //else show all vaults where is private = false
+    internal IEnumerable<Vault> GetVaultsByCreatorId(string queryProfile, string creatorId)
+    {
+      IEnumerable<Vault> VaultsByCreatorId = _repo.GetVaultsByCreatorId(queryProfile);
+      if (queryProfile != creatorId)
+      {
+        return VaultsByCreatorId.ToList().FindAll(v => v.IsPrivate == false);
+      }
+      return VaultsByCreatorId;
+    }
     // internal IEnumerable<Vault> GetVaultsByCreatorId(string queryProfile, string creatorId)
     // {
     //   return _repo.GetVaultsByCreatorId(queryProfile).ToList().FindAll(v => v.CreatorId == creatorId || v.IsPrivate == false);
     // }
-    internal IEnumerable<Vault> GetVaultsByCreatorId(string queryProfile, string creatorId)
-    {
-      return _repo.GetVaultsByCreatorId(queryProfile).ToList().FindAll(v => v.CreatorId == creatorId || v.IsPrivate == false);
-    }
+
+
+
+
+    // internal IEnumerable<Vault> GetVaultsByCreatorId(string queryProfile, string creatorId)
+    // {
+    //   if(creatorId.id == ){
+    //   return _repo.GetVaultsByCreatorId(queryProfile).ToList().FindAll();
+    //   }
+    //   else{
+    //     _repo.GetVaultsByCreatorId(queryProfile).ToList().FindAll();
+    //   }
+    // }
 
     internal object Delete(int id, string creatorId)
     {

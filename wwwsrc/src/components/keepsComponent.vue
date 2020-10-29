@@ -25,6 +25,7 @@
         <p>Views: {{activeKeep.views}}</p>
         <p>Shares: {{activeKeep.shares}}</p>
         <p>Keeps: {{activeKeep.keeps}}</p>
+        <img :src="keepProp.creator.picture" width="25" height="25" alt="pic">
         <p>{{activeKeep.img}}</p>
       </div>
       <div class="modal-footer row" @click.stop >

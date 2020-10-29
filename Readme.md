@@ -9,7 +9,6 @@
 
 - Remove `keeps` from `vault`s
 - in vault page if user is creator they can remove keep from vault
-- profile has private vaults - request fails if private (fires on mounted)
 
 ### Wednesday Night 2:
 

@@ -53,7 +53,8 @@ namespace Keepr.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        return Ok(_serv.GetById(userInfo?.Id, id));
+        var something = Ok(_serv.GetById(userInfo?.Id, id));
+        return something;
       }
       catch (Exception error)
       {
@@ -107,6 +108,25 @@ namespace Keepr.Controllers
         keepData.Creator = userInfo;
         keepData.Id = id;
         return Ok(_serv.KeepViewCounter(keepData, userInfo.Id));
+      }
+      catch (System.Exception error)
+      {
+
+        return BadRequest(error.Message);
+
+      }
+    }
+    [HttpPut("{id}/keepscount")]
+
+    public async Task<ActionResult<Keep>> KeepsCounter(int id, [FromBody] Keep keepData)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        keepData.CreatorId = userInfo.Id;
+        keepData.Creator = userInfo;
+        keepData.Id = id;
+        return Ok(_serv.KeepsCounter(keepData, userInfo.Id));
       }
       catch (System.Exception error)
       {

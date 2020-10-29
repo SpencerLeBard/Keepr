@@ -37,8 +37,8 @@
         </form>
         <button type="button" class="btn btn-primary" @submit.prevent="createVaultKeep()" >Save to Vault</button>  
             NOTE ^^TRY ABOVE IF BELOW ISINT WORKING -->           
-   <form class="col d-flex" @submit.prevent="createVaultKeep()" >
-            <button type="submit" class="btn btn-danger">Save to Vault</button>
+   <form class="col d-flex" @submit.prevent="createVaultKeep()">
+            <button type="submit" class="btn btn-danger" @click="increaseKeepsCount()" >Save to Vault</button>
           <select class="form-control" v-model="newVaultKeep.vaultId" >
             <option v-for="vault in vaults" :key="vault.id" :vaultProp="vault" :value="vault.id"> {{vault.name}}</option>
             </select>
@@ -102,6 +102,10 @@ export default {
       this.$store.dispatch("getVaultsByProfile" , this.profile.id)
       this.$store.dispatch("keepViewsCount" , this.keepProp)
     },
+    // clearActiveKeep(){
+    //   this.$store.dispatch("clearActiveKeep")
+
+    // },
     deleteKeep(){
       this.$store.dispatch("deleteKeep",this.keepProp.id)
 },
@@ -111,10 +115,14 @@ export default {
     //NOTE TRY BELOW IF THIS DOESNT WORK 
       // this.$store.dispatch("createVaultKeep" , this.activeKeep.id)
       // this.$store.dispatch("createVaultKeep" , this.activeVault)
-      } 
+      } ,
       // keepViewsCount(){ 
       // this.$store.dispatch("keepViewsCount" , this.keepProp.id)
       // }
+      increaseKeepsCount(){
+      this.$store.dispatch("keepsCount" , this.keepProp)
+
+      }
   },
     components: {vaultComponent}
 }

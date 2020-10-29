@@ -56,7 +56,11 @@ export default new Vuex.Store({
     },
     activeVaultKeeps(state , vaultkeeps){
       state.activeVaultKeeps = vaultkeeps
-    }
+    },
+    // clearActiveKeep(state , {empty}){
+    //   state.activeKeep = {empty}
+    //   // debugger
+    // }
   },
   actions: {
     async getProfile({ commit }) {
@@ -208,6 +212,14 @@ export default new Vuex.Store({
       } catch(error){
         console.error(error);
       }
-    }
+    },
+    async keepsCount({commit , dispatch} , keepData){
+      try{
+        let res = await api.put("keeps/" + keepData.id + "/keepscount", keepData)
+        commit("setActiveKeep", res.data)
+      } catch(error){
+        console.error(error);
+      }
+    },
   }
 });

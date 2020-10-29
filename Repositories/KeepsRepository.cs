@@ -96,6 +96,16 @@ namespace Keepr.Repositories
       _db.Execute(sql, keepData);
       return keepData;
     }
+    internal Keep KeepsCounter(Keep keepData)
+    {
+      string sql = @"
+            UPDATE keeps
+            SET
+            keeps = @Keeps + 1
+            WHERE id = @Id;";
+      _db.Execute(sql, keepData);
+      return keepData;
+    }
     internal IEnumerable<Keep> GetKeepsByCreatorId(string queryProfile)
     {
       string sql = @"

@@ -60,6 +60,12 @@ namespace Keepr.Services
 
       return _repo.KeepViewCounter(keepData);
     }
+    internal Keep KeepsCounter(Keep keepData, string creatorId)
+    {
+      Keep original = _repo.GetById(keepData.Id);
+      var mammoth = _repo.KeepsCounter(keepData);
+      return mammoth;
+    }
 
     internal IEnumerable<Keep> GetKeepsByCreatorId(string queryProfile, string creatorId)
     {

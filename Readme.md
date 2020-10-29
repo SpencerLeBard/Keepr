@@ -5,15 +5,10 @@
 
 # Requirements
 
-### Wednesday Night 1:
+### Todo:
 
 - Remove `keeps` from `vault`s
 - in vault page if user is creator they can remove keep from vault
-
-### Wednesday Night 2:
-
-- View Count - server side in repo/setActiveId
-- Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
 
 ### Thursday:
 
@@ -21,6 +16,9 @@
 - Total public `vault`s count
 
 ### Pretty much done:
+
+- Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
+- View Count
 
 X - All API Tests pass:
 failed tests:

@@ -100,7 +100,7 @@ export default {
     setActiveKeep(){
       this.$store.dispatch("setActiveKeep" , this.keepProp)
       this.$store.dispatch("getVaultsByProfile" , this.profile.id)
-      // this.$store.dispatch("keepViewsCount" , this.keepProp)
+      this.$store.dispatch("keepViewsCount" , this.keepProp)
     },
     deleteKeep(){
       this.$store.dispatch("deleteKeep",this.keepProp.id)

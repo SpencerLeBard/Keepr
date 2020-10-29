@@ -200,14 +200,14 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
-    // async keepViewsCount({commit , dispatch} , keepData){
-    //   try{
-    //   let res = await api.put("keeps/" + keepData)
-    //   commit("setActiveKeep", res.data)
-    //   // dispatch("keepViewCount" , keepData.id)
-    //   } catch(error){
-    //     console.error(error);
-    //   }
-    // }
+    async keepViewsCount({commit , dispatch} , keepData){
+      try{
+        let res = await api.put("keeps/" + keepData.id , keepData)
+        commit("setActiveKeep", res.data)
+      // dispatch("keepViewCount" , keepData.id)
+      } catch(error){
+        console.error(error);
+      }
+    }
   }
 });

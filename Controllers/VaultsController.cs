@@ -36,20 +36,6 @@ namespace Keepr.Controllers
         return BadRequest(error.Message);
       }
     }
-    // [HttpGet("{creatorId}")] //api/vaults/creatorID
-    // public async Task<ActionResult<IEnumerable<VaultsController>>> GetVaultsByCreatorId(string creatorId)
-    // {
-    //   try
-    //   {
-    //     Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-    //     return Ok(_serv.GetVaultsByCreatorId(creatorId));
-    //   }
-    //   catch (Exception error)
-    //   {
-
-    //     return BadRequest(error.Message);
-    //   }
-    // }
     [HttpGet("{id}/keeps")] //api/vaults/:id/keeps
     public ActionResult<IEnumerable<Keep>> GetKeepsByVaultId(int id)
     {

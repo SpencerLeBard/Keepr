@@ -4,9 +4,11 @@
       <div class="col">
     <h1> Welcome to {{searchedProfile.name}}'s Profile!</h1>
     <img :src="searchedProfile.picture" width="100" height="100" alt="pic">
+    <!-- <h1>Total Keeps Count:{{profileKeeps.Array}}</h1>
+    <h1>Total Public Vaults Count:{{vaults.Array}}</h1> -->
     <div v-if="searchedProfile.id == profile.id">
       <div class="col-6">
-      <form @submit.prevent="createVault()">
+      <form @submit.prevent="createVault().stopPropigation()">
         <div class="form-group card">
       <button class="btn btn-success" type="submit">Create Vault</button>
       <input class="form-control" placeholder="Keep Name ... " type="text" v-model="newVault.name">

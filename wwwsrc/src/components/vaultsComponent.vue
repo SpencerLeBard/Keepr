@@ -1,6 +1,6 @@
 <template>
-<div class="vaults-cards card col-3 m-2" @click="setActiveVault()">
-  <!-- <i class="fa fa-times text-danger fa-3x" v-if="profile.id == vaultProp.creatorId" @click="deleteVault()" aria-hidden="true"></i> -->
+<div class="vaults-cards card m-2" @click="setActiveVault()">
+  <i class="fa fa-times text-danger fa-3x" v-if="profile.id == vaultProp.creatorId" @click="deleteVault().stopPropigation()" aria-hidden="true"></i>
   <div><h2>{{vaultProp.name}}</h2>
   <h2>{{vaultProp.description}}</h2> 
   <h2>{{vaultProp.creator.name}}</h2> 

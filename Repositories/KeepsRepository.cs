@@ -72,6 +72,9 @@ namespace Keepr.Repositories
 
     //}
     internal IEnumerable<Keep> GetKeepsByVaultId(int id)
+    //NOTE AS = rename column or table with alias
+    //JOIN = combine rows from two or more tables, based on a related column between them (ven diagram)
+    //specify which table to select
     {
       string sql = @"
       SELECT k.*, vk.id 

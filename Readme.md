@@ -7,18 +7,11 @@
 
 ### Todo:
 
-- Remove `keeps` from `vault`s
+- Total keeps count
+- Total public vaults count
 - in vault page if user is creator they can remove keep from vault
 
 ### Thursday:
-
-- navigate to profile not special page
-- Total public `vault`s count
-
-### Pretty much done:
-
-- Total `keep`s count , anytime a `keep` is `kept in a vault` the keep count is incremented
-- View Count
 
 X - All API Tests pass:
 failed tests:

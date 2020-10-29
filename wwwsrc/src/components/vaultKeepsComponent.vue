@@ -1,6 +1,6 @@
 <template>
  <div class="vault-keeps-cards card col m-2" >
-    <i class="fa fa-times text-danger fa-3x" @click="deleteVaultKeep()" />
+    <i class="fa fa-times text-danger fa-3x" v-if="profile.id == activeVaultKeepProp.creatorId" @click="deleteVaultKeep()" />
   <h2>{{activeVaultKeepProp.name}}</h2>
   <h2>{{activeVaultKeepProp.description}}</h2>
     </div>

@@ -15,7 +15,10 @@ namespace Keepr.Services
     }
     internal void Create(VaultKeep newVK)
     {
+      // FIXME return this data
       _repo.Create(newVK);
+      // FIXME you can send the request right here to increase the keeps count on the keep
+
     }
     internal void Delete(int id)
     {

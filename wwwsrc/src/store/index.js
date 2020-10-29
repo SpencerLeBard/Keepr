@@ -40,6 +40,7 @@ export default new Vuex.Store({
       state.activeVault = vault
     },
     addKeep(state , keep){
+      // FIXME you are replacing the keeps array with a single object
       state.keeps = keep
     },
     addVault(state , vault){
@@ -145,8 +146,9 @@ export default new Vuex.Store({
     async createKeep({ commit, dispatch }, keepData) {
       try {
         let res = await api.post("keeps", keepData)
+        // FIXME you need to pass the data from the res into the array
         commit("addKeep" )
-        dispatch("getKeeps")
+        // dispatch("getKeeps")
       } catch (error) {
         console.error(error)
       }

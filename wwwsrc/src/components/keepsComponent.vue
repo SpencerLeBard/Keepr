@@ -1,9 +1,12 @@
 <template>
-<div class="keep-cards card col-3 m-2" @click="setActiveKeep()"> 
-   <i class="fa fa-times text-danger" v-if="profile.id == keepProp.creatorId" @click="deleteKeep()" aria-hidden="true"></i>
+<div class="keep-cards card m-2" @click="setActiveKeep()"> 
+   <i class="fa fa-times text-danger" v-if="profile.id == keepProp.creatorId" @click.stop="deleteKeep()" aria-hidden="true"></i>
   <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>
   <h2>{{keepProp.creator.name}}</h2>
+  <!-- <h2>{{keepProp.creator.picture}}</h2> -->
+  <img :src="keepProp.img" width="100" height="100" alt="pic">
+
   <!-- <h2>{{keepProp.creator.picture}}</h2>
   //NOTE PUT ^^ IN IMG TAG AND MAKE IT FIT SNUG
   <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -->
@@ -20,13 +23,12 @@
       </div>
       <div class="modal-body" @click.stop>
         <p>Name: {{activeKeep.name}}</p>
-        <!-- <p>creator: {{activeKeep.creator}}</p> -->
         <p>Description: {{activeKeep.description}}</p>
         <p>Views: {{activeKeep.views}}</p>
         <p>Shares: {{activeKeep.shares}}</p>
         <p>Keeps: {{activeKeep.keeps}}</p>
         <img :src="keepProp.creator.picture" width="25" height="25" alt="pic">
-        <p>{{activeKeep.img}}</p>
+        <img :src="activeKeep.img" width="100" height="100" alt="pic">
       </div>
       <div class="modal-footer row" @click.stop >
         <!-- <form class="col" @submit.prevent="createVaultKeep()" >

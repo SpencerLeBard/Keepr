@@ -3,7 +3,7 @@
     <i class="fa fa-times text-danger fa-3x" v-if="profile.id == activeVaultKeepProp.creatorId" @click="deleteVaultKeep()" />
   <h2>{{activeVaultKeepProp.name}}</h2>
   <h2>{{activeVaultKeepProp.description}}</h2>
-  <h2>{{searchedProfile.creator.name}}</h2>
+  <!-- <h2>{{searchedProfile.creator.name}}</h2> -->
     <img :src="activeVaultKeepProp.creator.picture" width="100" height="100" alt="pic">
 
     </div>

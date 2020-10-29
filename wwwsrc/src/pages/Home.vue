@@ -1,5 +1,5 @@
 <template>
-  <div class="home container-fluid"> 
+  <div class="home container-fluid card-columns"> 
 <div class="row">
      <div v-if="$auth.isAuthenticated">
       <form @submit.prevent="createKeep()">

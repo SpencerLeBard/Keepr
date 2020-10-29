@@ -1,6 +1,7 @@
 <template>
   <div>
  <div class="profile-keeps-cards card col m-2" >
+      <i class="fa fa-times text-danger" v-if="profile.id == profileKeepsProp.creatorId" @click="deleteKeep()" aria-hidden="true"></i>
   <div><h2>{{profileKeepsProp.name}}</h2> 
    <h2>{{profileKeepsProp.description}}</h2>
     </div> 
@@ -32,6 +33,11 @@ computed: {
       return this.$store.state.keeps
     }
   },
+  methods:{
+      deleteKeep(){
+      this.$store.dispatch("deleteKeep",this.profileKeepsProp.id)
+},
+  }
 
 }
 </script>

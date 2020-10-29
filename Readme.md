@@ -8,7 +8,7 @@
 ### Todo:
 
 - Total keeps count
-- Total public vaults count
+- Total public vaults count (public!)
 - in vault page if user is creator they can remove keep from vault
 
 ### Thursday:

@@ -21,12 +21,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" @click.stop>
+      <div class="modal-body" @click.stop v-if="activeKeep.creator">
         <p>Name: {{activeKeep.name}}</p>
         <p>Description: {{activeKeep.description}}</p>
         <p>Views: {{activeKeep.views}}</p>
         <p>Shares: {{activeKeep.shares}}</p>
         <p>Keeps: {{activeKeep.keeps}}</p>
+        <p>Keeps: {{activeKeep.creator.name}}</p>
         <img :src="keepProp.creator.picture" width="25" height="25" alt="pic">
         <img :src="activeKeep.img" width="100" height="100" alt="pic">
       </div>

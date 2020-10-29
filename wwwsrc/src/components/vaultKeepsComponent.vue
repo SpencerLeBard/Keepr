@@ -1,6 +1,6 @@
 <template>
  <div class="vault-keeps-cards card col m-2" >
-    <i class="fa fa-times text-danger fa-3x" v-if="profile.id == activeVaultKeepProp.creatorId" @click="deleteVaultKeep()" />
+    <i class="fa fa-times text-danger fa-3x" v-if="profile.id == activeVault.creatorId" @click="deleteVaultKeep()" />
   <h2>{{activeVaultKeepProp.name}}</h2>
   <h2>{{activeVaultKeepProp.description}}</h2>
   <!-- <h2>{{searchedProfile.creator.name}}</h2> -->
@@ -12,10 +12,11 @@
 <script>
 export default {
 name: "vault-keeps-component" ,
-  props:["keepProp" , "activeVaultKeepProp"],
+  props:["keepProp" , "activeVaultKeepProp" , "vaultProp"],
  mounted(){
    this.$store.dispatch("getKeepsByVaultId" , this.$route.params.vaultId)
    this.$store.dispatch("getActiveVaultKeeps" , this.$route.params.vaultId)
+  //  this.$store.dispatch("getActiveVaults" , this.$route.params.profileId)
  },
  data() {
     return {

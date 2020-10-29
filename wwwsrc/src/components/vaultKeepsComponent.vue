@@ -1,6 +1,6 @@
 <template>
  <div class="vault-keeps-cards card col m-2" >
-    <i class="fa fa-times text-danger fa-3x" v-if="profile.id == activeVaultKeepProp.creatorId" @click="deleteVaultKeep(keep)" />
+    <i class="fa fa-times text-danger fa-3x" @click="deleteVaultKeep()" />
   <h2>{{activeVaultKeepProp.name}}</h2>
   <h2>{{activeVaultKeepProp.description}}</h2>
     </div>
@@ -47,13 +47,17 @@ name: "vault-keeps-component" ,
       // this.$store.dispatch("deleteVaultKeep", this.activeVault.id)
       // this.deleteVaultKeep.keepId = this.activeKeep.id;
       // this.deleteVaultKeep.vaultId = this.activeVault.id;
-        let deletedVaultKeep = {};
-        deletedVaultKeep.keep = keep.id;
-        deletedVaultKeep.vaultId = this.$route.params.vaultId;
-      this.$store.dispatch("deleteVaultKeep", deletedVaultKeep)
-      debugger
+        // let deletedVaultKeep = {};
+        // deletedVaultKeep.keep = keep;
+        // deletedVaultKeep.route = this.$route.params.vaultId;
+      this.$store.dispatch("deleteVaultKeep", this.activeVaultKeepProp.vaultKeepId)
       },
-    }
+    //   setActiveKeep(){
+    //   this.$store.dispatch("setActiveKeep" , this.keepProp)
+    //   this.$store.dispatch("getVaultsByProfile" , this.profile.id)
+    //   this.$store.dispatch("keepViewsCount" , this.keepProp)
+    // }
+}
 }
 </script>
 

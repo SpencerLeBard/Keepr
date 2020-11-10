@@ -2,10 +2,10 @@
   <div class="profile container-fluid">
     <div class="row">
       <div class="col">
-    <h1> Welcome to {{searchedProfile.name}}'s Profile!</h1>
-    <img :src="searchedProfile.picture" width="100" height="100" alt="pic">
-    <h1>Total Keeps Count:{{keeps.length}}</h1>
-    <h1>Total Public Vaults Count:{{vaults.length}}</h1>
+    <h1 class="text-light"> Welcome to {{searchedProfile.name}}'s Profile!</h1>
+    <img class="m-2" :src="searchedProfile.picture" width="100" height="100" alt="pic">
+    <!-- <h1>Total Keeps Count:{{keeps.length}}</h1>
+    <h1>Total Public Vaults Count:{{vaults.length}}</h1> -->
     <div v-if="searchedProfile.id == profile.id">
       <div class="col-6">
       <form @submit.prevent="createVault().stopPropigation()">
@@ -21,11 +21,11 @@
       </div>
     </div>
       <div class="row">
-        <h1>Vaults</h1>
+        <h1 class="text-light">Vaults:</h1>
       <vaults-component v-for="vault in vaults" :key="vault.id" :vaultProp="vault"/>
       </div>
       <div class="row">
-        <h1>Keeps</h1>
+        <h1 class="text-light">Keeps:</h1>
       <profile-keeps-component v-for="keep in keeps" :key="keep.id" :profileKeepsProp="keep" />
       <!-- {{profileKeeps}} -->
       <!-- {{profileKeepsProp}} -->

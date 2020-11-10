@@ -21,7 +21,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" @click.stop v-if="activeKeep.creator">
         <!-- <p>Name: {{activeKeep.name}}</p>
         <p>Description: {{activeKeep.description}}</p>
         <p>Views: {{activeKeep.views}}</p>
@@ -41,8 +41,8 @@
         <button type="button" class="btn btn-primary" @submit.prevent="createVaultKeep()" >Save to Vault</button>  
             NOTE ^^TRY ABOVE IF BELOW ISINT WORKING -->           
    <form class="col d-flex" @submit.prevent="createVaultKeep()">
-            <button type="submit" class="btn btn-danger m-2" @click="increaseKeepsCount()" >Save to Vault</button>
-          <select class="form-control m-2" v-model="newVaultKeep.vaultId" >
+            <button type="submit" class="btn btn-danger" @click="increaseKeepsCount()" >Save to Vault</button>
+          <select class="form-control" v-model="newVaultKeep.vaultId" >
             <option v-for="vault in vaults" :key="vault.id" :vaultProp="vault" :value="vault.id"> {{vault.name}}</option>
             </select>
         </form>

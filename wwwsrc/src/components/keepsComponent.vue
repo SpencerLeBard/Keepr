@@ -5,7 +5,7 @@
   <h2>{{keepProp.description}}</h2>
   <h2>{{keepProp.creator.name}}</h2>
   <!-- <h2>{{keepProp.creator.picture}}</h2> -->
-  <img :src="keepProp.img" width="100" height="100" alt="pic">
+  <img class="keeps-img" :src="keepProp.img" width="100" height="100" alt="pic">
 
   <!-- <h2>{{keepProp.creator.picture}}</h2>
   //NOTE PUT ^^ IN IMG TAG AND MAKE IT FIT SNUG
@@ -137,12 +137,9 @@ export default {
   height: 40vh;
   width: 25vw;
 }
-/* .modal {
-  z-index: -1;
-} */
-/* select{
-    width: 100px;
-    text-overflow: scroll;
+/* .keeps-img{
+  height:40vh;
+  width:25vw;
 } */
 
 </style>

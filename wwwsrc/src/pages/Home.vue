@@ -1,19 +1,23 @@
 <template>
-  <div class="home container-fluid card-columns"> 
-<div class="row">
+  <div class="home container-fluid"> 
+<div class="row form-row">
+  <div class="col">
      <div v-if="$auth.isAuthenticated">
       <form @submit.prevent="createKeep()">
-        <div class="form-group card">
-      <button class="btn btn-success" type="submit">Create Keep</button>
+        <div class="form-group form-card m-2">
+      <button class="btn btn-dark" type="submit">Create Keep</button>
       <input class="form-control" placeholder="Keep Title ... " type="text" v-model="newKeep.name">
-      <input class="form-control" placeholder="Keep desc ... " type="text" v-model="newKeep.description">
-      <input class="form-control" placeholder="Keep img ... " type="text" v-model="newKeep.img">
+      <input class="form-control" placeholder="Keep description ... " type="text" v-model="newKeep.description">
+      <input class="form-control" placeholder="Keep img url ... " type="text" v-model="newKeep.img">
        <!-- <input class="form-control" placeholder="profile Id ... " type="text" v-model="keepData.creatorId">
        <input class="form-control" placeholder=" Id ... " type="text" v-model="keepData.id"> -->
       <!-- NOTE d1346e0c-3732-45fc-ad6b-237fa1a0b73d is test id -->
         </div>
       </form>
+  </div>
     </div>
+    </div>
+    <div class="row">
 <keeps-component class="btn" type="button" data-toggle="modal" data-target="#keepModal" v-for="keep in keeps" :key="keep.id" :keepProp="keep" />
     </div>
   </div>
@@ -63,3 +67,16 @@ export default {
   components: {keepsComponent},
 }
 </script>
+<style scoped>
+/* .card-columns {
+        -webkit-column-count:3;
+        -moz-column-count:3;
+        column-count:3;
+    } */
+/* .form-row{
+  width: 100vw
+} */
+.form-card{
+  width: 50vw;
+}
+</style>

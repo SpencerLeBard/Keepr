@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h1 class="border border-primary">Keepr</h1>
+        <h1 class="border border-primary text-light">Keepr</h1>
       </div>
     </router-link>
     <button
@@ -23,7 +23,7 @@
                 :class="{ active: $route.name == 'Profile' }"
               >
                 <router-link
-                  class="nav-link text-dark"
+                  class="nav-link text-light"
                   :to="{ name: 'Profile' }"
                 >Profile</router-link>
               </li>
@@ -49,11 +49,11 @@ import {ProfilePage} from "../pages/ProfilePage"
 export default {
   name: "Navbar",
    mounted(){
-     this.$store.dispatch("getProfile");
-    this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
-    this.$store.dispatch("getVaultsByProfile" , this.$route.params.profileId)
-     this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
-     this.$store.dispatch("getKeepsByCreatorId", this.$route.params.profileId);
+    //  this.$store.dispatch("getProfile");
+    // this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
+    // this.$store.dispatch("getVaultsByProfile" , this.$route.params.profileId)
+    //  this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
+    //  this.$store.dispatch("getKeepsByCreatorId", this.$route.params.profileId);
   },
   methods: {
     async login() {

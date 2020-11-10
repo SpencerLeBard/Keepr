@@ -1,10 +1,8 @@
 <template>
 <div class="vaults-cards card m-2" @click="setActiveVault()">
-  <i class="fa fa-times text-danger fa-3x" v-if="profile.id == vaultProp.creatorId" @click.stop="deleteVault()" aria-hidden="true"></i>
+  <i class="fa fa-times text-danger" v-if="profile.id == vaultProp.creatorId" @click.stop="deleteVault()" aria-hidden="true"></i>
   <div><h2>{{vaultProp.name}}</h2>
-  <h2>{{vaultProp.description}}</h2> 
-  <h2>{{vaultProp.creator.name}}</h2> 
-  <img src="https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Reddit-512.png" width="100" height="100" alt="pic"> -
+  <img class="vault-img" src="https://gleason-group.net/wp-content/uploads/2018/03/vault-1.jpg" alt="pic"> -
     </div> 
     </div>
 </template>
@@ -47,7 +45,14 @@ export default {
 </script>
 
 <style>
-.delete{
-  height: 10vh;
+.vaults-cards{
+  height: 35vh;
+  width: 20vw;
+  border-radius: 25px;
+}
+.vault-img{
+  height: 25vh;
+  width: 20vw;
+  border-radius: 25px;
 }
 </style>

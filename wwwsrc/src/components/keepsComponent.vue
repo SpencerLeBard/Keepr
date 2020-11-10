@@ -92,8 +92,8 @@ export default {
   methods:{
 
     viewProfile(){
-      this.$router.push({name: "Profile", params: { profileId:this.keepProp.creator.id}})
       this.$store.dispatch("getSearchedProfile" , this.keepProp.creator.id)
+      this.$router.push({name: "Profile", params: { profileId : this.keepProp.creator.id}})
 
       // this.$store.dispatch("getVaultsByProfile" , this.profile.id)
       // this.$store.dispatch("getProfileKeeps" , this.profile.id)
@@ -103,7 +103,7 @@ export default {
     setActiveKeep(){
       this.$store.dispatch("setActiveKeep" , this.keepProp)
       this.$store.dispatch("getVaultsByProfile" , this.profile.id)
-      this.$store.dispatch("keepViewsCount" , this.keepProp)
+      // this.$store.dispatch("keepViewsCount" , this.keepProp)
     },
     // clearActiveKeep(){
     //   this.$store.dispatch("clearActiveKeep")

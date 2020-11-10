@@ -1,16 +1,11 @@
 <template>
   <div class="profile container-fluid">
     <div class="row">
-      <div class="col">
-    <h1 class="text-light"> Welcome to {{searchedProfile.name}}'s Profile!</h1>
-    <img class="m-2" :src="searchedProfile.picture" width="100" height="100" alt="pic">
-    <!-- <h1>Total Keeps Count:{{keeps.length}}</h1>
-    <h1>Total Public Vaults Count:{{vaults.length}}</h1> -->
-    <div v-if="searchedProfile.id == profile.id">
       <div class="col-6">
+    <div v-if="searchedProfile.id == profile.id">
       <form @submit.prevent="createVault().stopPropigation()">
-        <div class="form-group card">
-      <button class="btn btn-success" type="submit">Create Vault</button>
+        <div class="form-group card m-2">
+      <button class="btn btn-dark" type="submit">Create Vault</button>
       <input class="form-control" placeholder="Keep Name ... " type="text" v-model="newVault.name">
       <input class="form-control" placeholder="Keep Desc ... " type="text" v-model="newVault.description">
       <input type="checkbox" v-model="newVault.isPrivate"> Private?
@@ -18,7 +13,14 @@
       </form>
       </div>
     </div>
+      <div class="col">
+    <img class="m-2" :src="searchedProfile.picture" width="100" height="100" alt="pic">
       </div>
+      <div class="col-5">
+    <h1 class="text-light"> Welcome to {{searchedProfile.name}}'s Profile!</h1>
+      </div>
+    <!-- <h1>Total Keeps Count:{{keeps.length}}</h1>
+    <h1>Total Public Vaults Count:{{vaults.length}}</h1> -->
     </div>
       <div class="row">
         <h1 class="text-light">Vaults:</h1>

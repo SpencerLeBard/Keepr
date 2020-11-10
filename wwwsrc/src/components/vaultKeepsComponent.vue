@@ -1,11 +1,16 @@
 <template>
- <div class="vault-keeps-cards card col m-2" >
-    <i class="fa fa-times text-danger fa-3x" v-if="profile.id == activeVault.creatorId" @click="deleteVaultKeep()" />
-  <h2>{{activeVaultKeepProp.name}}</h2>
-  <h2>{{activeVaultKeepProp.description}}</h2>
-  <!-- <h2>{{searchedProfile.creator.name}}</h2> -->
-    <img :src="activeVaultKeepProp.creator.picture" width="100" height="100" alt="pic">
-
+ <div class="vault-keeps-cards card m-2 container bg-primary" >
+   <div class="row">
+     <div class="col-2">
+    <i class="fa fa-times text-danger fa-2x" v-if="profile.id == activeVault.creatorId" @click="deleteVaultKeep()" />
+     </div>
+     <div class="col-8 text-center">
+  <h2 class="text-light">{{activeVaultKeepProp.name}}</h2>
+     </div>
+   </div>
+   <div class="row">
+    <img class="vault-keeps-img" :src="activeVaultKeepProp.img" alt="pic">
+   </div>
     </div>
 </template>
 
@@ -66,5 +71,14 @@ name: "vault-keeps-component" ,
 </script>
 
 <style>
-
+.vault-keeps-cards{
+  height: 42vh;
+  width: 23vw;
+  border-radius: 25px;
+}
+.vault-keeps-img{
+  height:36vh;
+  width: 24vw;
+  border-radius: 25px;
+}
 </style>

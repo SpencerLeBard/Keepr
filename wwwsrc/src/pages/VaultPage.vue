@@ -1,12 +1,11 @@
 <template>
   <div class="vault-page container-fluid">
     <div class="row">
-      <i class="fa fa-times text-danger fa-3x" v-if="profile.id == activeVault.creatorId" @click="deleteVault()" aria-hidden="true"></i>
-      <h1> Vault Name:{{activeVault.name}} </h1>
+      <h1 class="text-light"> Vault Name: {{activeVault.name}} </h1>
+      <i class="fa fa-times text-danger fa-2x" v-if="profile.id == activeVault.creatorId" @click="deleteVault()" aria-hidden="true"></i>
     </div>
     <div class="row">
-    <h1>Keeps in Vault:</h1>
-    <!-- {{activeVaultKeeps}} -->
+    <h1 class="text-light">Keeps in Vault:</h1>
     </div>
     <div class="row">
     <vault-keeps-component v-for="activeVaultKeep in activeVaultKeeps" :key="activeVaultKeep.id" :activeVaultKeepProp="activeVaultKeep" />

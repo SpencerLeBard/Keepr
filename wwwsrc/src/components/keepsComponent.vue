@@ -1,5 +1,5 @@
 <template>
-<div class="keep-cards card m-2" @click="setActiveKeep()"> 
+<div class="keep-cards card m-2 bg-primary" @click="setActiveKeep()"> 
    <!-- <i class="fa fa-times text-danger" v-if="profile.id == keepProp.creatorId" @click.stop="deleteKeep()" aria-hidden="true"></i> -->
   <!-- <h2>{{keepProp.name}}</h2>
   <h2>{{keepProp.description}}</h2>

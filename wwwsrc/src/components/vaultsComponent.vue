@@ -1,9 +1,19 @@
 <template>
-<div class="vaults-cards card m-2" @click="setActiveVault()">
+<div class="vaults-cards card m-2 bg-primary" @click="setActiveVault()">
+  <div class="row">
+    <div class="col-2">
+
   <i class="fa fa-times text-danger" v-if="profile.id == vaultProp.creatorId" @click.stop="deleteVault()" aria-hidden="true"></i>
-  <div><h2>{{vaultProp.name}}</h2>
-  <img class="vault-img" src="https://gleason-group.net/wp-content/uploads/2018/03/vault-1.jpg" alt="pic"> -
+    </div>
+    <div class="col-10">
+  <h2 class="text-light">{{vaultProp.name}}</h2>
+  </div>
     </div> 
+  <div class="row">
+    <div class="col">
+  <img class="vault-img" src="https://gleason-group.net/wp-content/uploads/2018/03/vault-1.jpg" alt="pic"> -
+    </div>
+  </div>
     </div>
 </template>
 
@@ -46,7 +56,7 @@ export default {
 
 <style>
 .vaults-cards{
-  height: 35vh;
+  height: 30vh;
   width: 20vw;
   border-radius: 25px;
 }

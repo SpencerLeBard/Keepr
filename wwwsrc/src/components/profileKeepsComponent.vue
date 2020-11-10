@@ -1,12 +1,23 @@
 <template>
-  <div>
- <div class="profile-keeps-cards card col m-2" >
+<div>
+ <div class="profile-keeps-cards card m-2 bg-primary" >
+   <div class="row">
+   <div class="col-2">
       <i class="fa fa-times text-danger" v-if="profile.id == profileKeepsProp.creatorId" @click="deleteKeep()" aria-hidden="true"></i>
-  <div><h2>{{profileKeepsProp.name}}</h2> 
-   <h2>{{profileKeepsProp.description}}</h2>
-    </div> 
+   </div>
+   <div class="col">
+
+  <div><h2 class="text-light">{{profileKeepsProp.name}}</h2> 
+   </div>
     </div>
-  </div>
+   </div>
+    <div class="row">
+    <div class="col">
+  <img class="profile-keeps-img" :src="profileKeepsProp.img" alt="pic">
+    </div>
+    </div>
+    </div> 
+</div>
 </template>
 
 <script>
@@ -44,7 +55,14 @@ computed: {
 
 <style>
 .profile-keeps-cards{
-  height: 40vh;
-  width: 25vw;
+  height: 30vh;
+  width: 20vw;
+  border-radius: 25px;
 }
+.profile-keeps-img{
+  height: 25vh;
+  width: 20vw;
+  border-radius: 25px;
+}
+
 </style>

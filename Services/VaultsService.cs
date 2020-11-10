@@ -66,8 +66,8 @@ namespace Keepr.Services
     internal object Delete(int id, string creatorId)
     {
       Vault original = _repo.GetById(id);
-      if (original == null) { throw new Exception("Invalid Id"); }
-      if (original.CreatorId != creatorId) { throw new Exception("Access Denied... This is not yours"); }
+      // if (original == null) { throw new Exception("Invalid Id"); }
+      // if (original.CreatorId != creatorId) { throw new Exception("Access Denied... This is not yours"); }
       _repo.Remove(id);
       return "succesfully delorted";
 

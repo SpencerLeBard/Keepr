@@ -54,23 +54,6 @@ namespace Keepr.Repositories
       ";
       return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { id }, splitOn: "id").FirstOrDefault();
     }
-    // internal Keep GetById(int id)
-    // {
-    //   string sql =
-    //   @"
-    //     SELECT
-    //     keep.*,
-    //     profile.*
-    //     UPDATE keep
-    //     SET views = vews + 1
-    //     WHERE id = @keep.id
-    //     FROM keeps keep
-    //     JOIN profiles profile on keep.creatorId = profile.Id
-    //     WHERE keep.id = @id
-    //   ";
-    //   return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { id }, splitOn: "id").FirstOrDefault();
-
-    //}
     internal IEnumerable<Keep> GetKeepsByVaultId(int id)
     //NOTE AS = rename column or table with alias
     //JOIN = combine rows from two or more tables, based on a related column between them (ven diagram)

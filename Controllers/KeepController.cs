@@ -32,21 +32,6 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-    //NOTE FIRST TRY 
-    // public async Task<ActionResult<IEnumerable<Keep>>> GetAll()
-    // {
-    //   try
-    //   {
-    //     // Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-    //     return Ok(_serv.GetAll(userInfo?.Id));
-    //     //NOTE had "userInfo?.Id" in getalls 
-    //   }
-    //   catch (Exception error)
-    //   {
-
-    //     return BadRequest(error.Message);
-    //   }
-    // }
     [HttpGet("{id}")]
     public async Task<ActionResult<IEnumerable<Keep>>> GetById(int id)
     {

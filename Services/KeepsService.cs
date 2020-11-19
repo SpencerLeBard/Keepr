@@ -33,11 +33,6 @@ namespace Keepr.Services
       {
         throw new Exception("Invalid ID");
       }
-      // if (original.CreatorId != creatorId)
-      // {
-      //   throw new Exception("Access Denied, why u lie about id");
-      // }
-      //NOTE WHY KEEP THROWING ACCESS DENIED
       return original;
     }
     internal IEnumerable<Keep> GetKeepsByVaultId(int id)

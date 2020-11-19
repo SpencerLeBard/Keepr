@@ -106,14 +106,6 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
-    // async getActiveVault({commit , dispatch} , profileId){
-    //   try {
-    //     let res = await api.get("profiles/" + profileId + "/vaults")
-    //     commit("setActiveVault" , res.data)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // },
     async getSearchedProfile({commit , dispatch } , profileId){
       try {
         let res = await api.get("profiles/" + profileId)

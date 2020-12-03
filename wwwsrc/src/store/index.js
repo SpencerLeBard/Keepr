@@ -40,7 +40,7 @@ export default new Vuex.Store({
       state.activeVault = vault
     },
     addKeep(state , keep){
-      // FIXME you are replacing the keeps array with a single object
+      // FIXME replacing the keeps array with a single object
       state.keeps = keep
     },
     addVault(state , vault){
@@ -58,10 +58,6 @@ export default new Vuex.Store({
     activeVaultKeeps(state , vaultkeeps){
       state.activeVaultKeeps = vaultkeeps
     },
-    // clearActiveKeep(state , {empty}){
-    //   state.activeKeep = {empty}
-    //   // debugger
-    // }
   },
   actions: {
     async getProfile({ commit }) {
@@ -80,16 +76,7 @@ export default new Vuex.Store({
         console.error(error)
       }
     } ,
-    // async getKeepsByCreatorId({commit , dispatch} , profileId){
-    //   try {
-    //     let res = await api.get("profiles/" + profileId + "/keeps")
-    //     commit("setKeeps" , res.data)
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // } ,
     async getVaultsByProfile({commit , dispatch} , profileId){
-      // debugger
       try {
         let res = await api.get("profiles/" + profileId + "/vaults")
         commit("setVaults" , res.data)
@@ -138,7 +125,7 @@ export default new Vuex.Store({
     async createKeep({ commit, dispatch }, keepData) {
       try {
         let res = await api.post("keeps", keepData)
-        // FIXME you need to pass the data from the res into the array
+        // FIXME need to pass the data from the res into the array
         commit("addKeep" )
         // dispatch("getKeeps")
       } catch (error) {
@@ -152,7 +139,6 @@ export default new Vuex.Store({
         dispatch("getKeeps")
       }} catch (error) {
         console.error(error)
-
       }
     },
     async createVault({ commit, dispatch }, vaultData) {
